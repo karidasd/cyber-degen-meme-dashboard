@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBER-DEGEN 3000 // Real Robot Memecoin Terminal</title>
+  <title>CYBER-DEGEN 3000 // Real Robot Memecoin AI Terminal</title>
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
@@ -169,9 +169,9 @@
     <div class="flex items-center space-x-1.5 sm:space-x-2">
       <!-- AI Persona Selector -->
       <select id="personaSelect" class="bg-black/80 border border-purple-500/60 text-purple-300 font-mono text-xs px-2 py-1.5 rounded focus:outline-none cursor-pointer">
-        <option value="chad">🚀 BASED CHAD</option>
+        <option value="chad" selected>🚀 BASED CHAD</option>
         <option value="quant">📈 QUANT ANALYST</option>
-        <option value="greek" selected>🇬🇷 GREEK DEGEN</option>
+        <option value="degen">🔥 DEGEN APE</option>
       </select>
 
       <!-- OBS Green Screen Mode -->
@@ -206,7 +206,7 @@
 
       <!-- Language Toggle -->
       <button id="btnLangToggle" class="px-2 py-1.5 rounded bg-gray-900/60 border border-gray-700 text-xs font-mono text-cyan-300 hover:border-cyan-500/40 transition-all">
-        🇬🇷 ΕΛ
+        🇺🇸 EN
       </button>
 
       <!-- Sound Toggle -->
@@ -284,7 +284,7 @@
         <div class="relative bg-black/75 rounded-lg p-3 border border-cyan-500/30 font-mono text-xs min-h-[72px] flex items-center text-gray-200 leading-relaxed overflow-hidden">
           <span class="text-cyan-400 mr-2 font-bold font-orbitron">></span>
           <p id="speechTranscriptText" class="text-cyan-200">
-            «Πάτα "SPEAK LIVE ANALYSIS" ή "PUMP" για να μιλήσει το ρομπότ ζωντανά!»
+            «Target locked: PEPE. Click "SPEAK ANALYSIS" or trigger "PUMP" to hear live commentary!»
           </p>
         </div>
 
@@ -602,7 +602,7 @@
 
     let selectedCoin = MEME_TOKENS[0];
     let isMuted = false;
-    let currentLang = 'el-GR';
+    let currentLang = 'en-US';
     let robotState = 'idle'; // 'idle' | 'pump' | 'dump' | 'speaking'
     let isSpeaking = false;
     let tiktokModeActive = false;
@@ -1811,8 +1811,8 @@
       const langBtn = document.getElementById('btnLangToggle');
       langBtn.addEventListener('click', () => {
         sound.playBlip();
-        currentLang = currentLang === 'el-GR' ? 'en-US' : 'el-GR';
-        langBtn.textContent = currentLang === 'el-GR' ? '🇬🇷 ΕΛ' : '🇺🇸 EN';
+        currentLang = currentLang === 'en-US' ? 'el-GR' : 'en-US';
+        langBtn.textContent = currentLang === 'en-US' ? '🇺🇸 EN' : '🇬🇷 EL';
         selectToken(selectedCoin);
       });
 
