@@ -153,12 +153,13 @@
     <div class="hidden lg:flex items-center space-x-3 font-mono text-xs">
       <div class="flex items-center space-x-1.5 bg-emerald-950/60 border border-emerald-500/40 px-3 py-1 rounded text-emerald-300">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span>FEED: <strong class="text-emerald-400 font-bold" id="feedStatus">BINANCE WS CONNECTED</strong></span>
+        <span>FEED: <strong class="text-emerald-400 font-bold" id="feedStatus">BINANCE LIVE</strong></span>
       </div>
-      <div class="flex items-center space-x-1.5 bg-purple-950/50 border border-purple-500/40 px-3 py-1 rounded text-purple-300">
-        <span class="text-yellow-400">🔥</span>
-        <span>SENTIMENT: <strong class="text-white" id="marketSentiment">GREED (78)</strong></span>
-      </div>
+      <!-- 24/7 Auto Streamer Voice Switch -->
+      <button id="btnAutoStreamerVoice" class="flex items-center space-x-1.5 px-3 py-1 rounded border border-purple-500/60 bg-purple-950/40 text-purple-300 hover:bg-purple-900/60 transition-all font-mono">
+        <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+        <span>AUTO-SPEECH: <strong class="text-white font-bold" id="autoVoiceLabel">OFF</strong></span>
+      </button>
       <div class="bg-black/60 border border-gray-700/60 px-3 py-1 rounded text-gray-300">
         LIVE UTC: <strong class="text-cyan-400" id="clockTime">--:--:--</strong>
       </div>
@@ -239,26 +240,32 @@
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center space-x-2">
             <span class="text-lg">🎙️</span>
-            <h3 class="font-orbitron font-bold text-sm tracking-wide text-cyan-300">AI NEURAL VOICE BROADCAST</h3>
+            <h3 class="font-orbitron font-bold text-sm tracking-wide text-cyan-300">AI ROBOT VOICE BROADCAST</h3>
           </div>
           <span id="voiceStatusBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">
             SYNTHESIZER READY
           </span>
         </div>
 
-        <!-- Speech Transcript Display -->
-        <div class="relative bg-black/70 rounded-lg p-3 border border-cyan-500/20 font-mono text-xs min-h-[68px] flex items-center text-gray-200 leading-relaxed overflow-hidden">
+        <!-- Speech Subtitles / Transcript Box -->
+        <div class="relative bg-black/75 rounded-lg p-3 border border-cyan-500/30 font-mono text-xs min-h-[72px] flex items-center text-gray-200 leading-relaxed overflow-hidden">
           <span class="text-cyan-400 mr-2 font-bold font-orbitron">></span>
           <p id="speechTranscriptText" class="text-cyan-200">
-            «Επιλέξτε ένα memecoin και πατήστε EXECUTE NEURAL SCAN. Το 3D Robot θα αναλύσει τα ζωντανά δεδομένα και θα μιλήσει δυνατά!»
+            «Πάτα "SPEAK LIVE ANALYSIS" ή "PUMP" για να μιλήσει το ρομπότ ζωντανά!»
           </p>
         </div>
 
-        <!-- Execute Scan Button -->
-        <button id="btnExecuteScan" class="mt-3 w-full py-3 px-4 rounded-lg bg-gradient-to-r from-cyan-500 via-teal-400 to-purple-600 text-black font-orbitron font-black text-sm tracking-widest hover:brightness-125 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2">
-          <span>🧠</span>
-          <span>EXECUTE NEURAL SCAN (<span id="btnScanTarget">PEPE</span>)</span>
-        </button>
+        <!-- Voice Action Buttons (TikTok Ready) -->
+        <div class="grid grid-cols-2 gap-2 mt-3">
+          <button id="btnExecuteScan" class="py-2.5 px-3 rounded-lg bg-gradient-to-r from-cyan-500 to-teal-400 text-black font-orbitron font-black text-xs tracking-wider hover:brightness-125 transition-all shadow-md shadow-cyan-500/20 flex items-center justify-center space-x-1.5">
+            <span>🗣️</span>
+            <span>SPEAK ANALYSIS (<span id="btnScanTarget">PEPE</span>)</span>
+          </button>
+          <button id="btnMarketSummary" class="py-2.5 px-3 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-orbitron font-bold text-xs tracking-wider hover:brightness-125 transition-all shadow-md shadow-purple-600/20 flex items-center justify-center space-x-1.5">
+            <span>🧠</span>
+            <span>ALL MEMES BRIEFING</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -552,6 +559,17 @@
     let tiktokModeActive = false;
 
     // --- 2. AUDIO SYNTHESIS & SOUND FX ---
+    let voicesList = [];
+    function updateVoices() {
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        voicesList = window.speechSynthesis.getVoices();
+      }
+    }
+    updateVoices();
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = updateVoices;
+    }
+
     class SoundEngine {
       constructor() {
         this.ctx = null;
@@ -562,6 +580,9 @@
         }
         if (this.ctx && this.ctx.state === 'suspended') {
           this.ctx.resume();
+        }
+        if (voicesList.length === 0 && window.speechSynthesis) {
+          voicesList = window.speechSynthesis.getVoices();
         }
       }
       playLaser() {
@@ -640,18 +661,22 @@
           if (onEnd) onEnd();
           return;
         }
+        this.init();
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 1.05;
-        utterance.pitch = 0.85; // robotic tint
+        utterance.pitch = 0.82;
         utterance.lang = currentLang;
 
-        const voices = window.speechSynthesis.getVoices();
+        if (voicesList.length === 0) {
+          voicesList = window.speechSynthesis.getVoices();
+        }
+
         if (currentLang === 'el-GR') {
-          const elVoice = voices.find(v => v.lang.startsWith('el'));
+          const elVoice = voicesList.find(v => v.lang.startsWith('el') || v.lang.includes('el_GR'));
           if (elVoice) utterance.voice = elVoice;
         } else {
-          const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('David')));
+          const enVoice = voicesList.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('David')));
           if (enVoice) utterance.voice = enVoice;
         }
 
@@ -1183,6 +1208,70 @@
       );
     }
 
+    // --- AUTO-STREAMER COMMENTARY & MARKET BRIEFING ---
+    let autoVoiceActive = false;
+    let autoVoiceInterval = null;
+
+    function toggleAutoVoice() {
+      sound.init();
+      autoVoiceActive = !autoVoiceActive;
+      const label = document.getElementById('autoVoiceLabel');
+      const btn = document.getElementById('btnAutoStreamerVoice');
+      
+      if (autoVoiceActive) {
+        label.textContent = 'ON (25s)';
+        btn.className = 'flex items-center space-x-1.5 px-3 py-1 rounded border border-emerald-400 bg-emerald-950/60 text-emerald-300 shadow-lg shadow-emerald-500/20 font-mono animate-pulse';
+        
+        const startTxt = currentLang === 'el-GR' 
+          ? 'Αυτόματη φωνή TikTok ενεργοποιήθηκε! Θα ανακοινώνω ζωντανά τις τιμές των memecoins.'
+          : 'Auto TikTok streamer voice online! Reporting real-time meme prices.';
+        document.getElementById('speechTranscriptText').textContent = startTxt;
+        sound.speak(startTxt);
+
+        autoVoiceInterval = setInterval(() => {
+          if (isSpeaking) return;
+          const randomCoin = MEME_TOKENS[Math.floor(Math.random() * MEME_TOKENS.length)];
+          selectToken(randomCoin);
+          executeScan();
+        }, 25000);
+      } else {
+        label.textContent = 'OFF';
+        btn.className = 'flex items-center space-x-1.5 px-3 py-1 rounded border border-purple-500/60 bg-purple-950/40 text-purple-300 hover:bg-purple-900/60 transition-all font-mono';
+        if (autoVoiceInterval) {
+          clearInterval(autoVoiceInterval);
+          autoVoiceInterval = null;
+        }
+      }
+    }
+
+    function executeMarketSummary() {
+      if (isSpeaking) return;
+      sound.init();
+      sound.playCash();
+      
+      const topMeme = [...MEME_TOKENS].sort((a,b) => b.change24h - a.change24h)[0];
+      const doge = MEME_TOKENS.find(t => t.id === 'doge') || MEME_TOKENS[0];
+      const pepe = MEME_TOKENS.find(t => t.id === 'pepe') || MEME_TOKENS[1];
+
+      const summaryEl = `Γενική επισκόπηση αγοράς! Κορυφαίο memecoin σήμερα είναι το ${topMeme.symbol} με συν ${topMeme.change24h.toFixed(1)} τοις εκατό. Το Dogecoin βρίσκεται στα ${formatPrice(doge.price)} δολάρια. Το PEPE στα ${formatPrice(pepe.price)} δολάρια. Συνολικό κλίμα αγοράς: Greed. Laser eyes σε ετοιμότητα!`;
+      const summaryEn = `Market briefing! Top memecoin gainer right now is ${topMeme.symbol} up ${topMeme.change24h.toFixed(1)} percent. Dogecoin at ${formatPrice(doge.price)} dollars. PEPE at ${formatPrice(pepe.price)} dollars. Overall market sentiment: Greed. Laser eyes standby!`;
+      
+      const text = currentLang === 'el-GR' ? summaryEl : summaryEn;
+      document.getElementById('speechTranscriptText').textContent = text;
+      
+      robotState = 'speaking';
+      isSpeaking = true;
+      document.getElementById('robotModeLabel').textContent = '🧠 FULL MARKET BRIEFING...';
+      document.getElementById('robotModeLabel').className = 'font-bold text-purple-400 tracking-wider animate-pulse';
+
+      sound.speak(text, null, () => {
+        isSpeaking = false;
+        robotState = 'idle';
+        document.getElementById('robotModeLabel').textContent = '⚡ SCANNING LIVE TICKERS';
+        document.getElementById('robotModeLabel').className = 'font-bold text-cyan-400 tracking-wider';
+      });
+    }
+
     // Quick TikTok Triggers
     function triggerPumpMode() {
       sound.init();
@@ -1454,8 +1543,13 @@
 
       // Buttons
       document.getElementById('btnExecuteScan').addEventListener('click', executeScan);
+      document.getElementById('btnMarketSummary').addEventListener('click', executeMarketSummary);
       document.getElementById('btnPumpTrigger').addEventListener('click', triggerPumpMode);
       document.getElementById('btnDumpTrigger').addEventListener('click', triggerDumpMode);
+      document.getElementById('btnAutoStreamerVoice').addEventListener('click', toggleAutoVoice);
+
+      // Auto-unlock audio context on first click anywhere
+      document.body.addEventListener('click', () => { sound.init(); }, { once: true });
 
       // Language Toggle
       const langBtn = document.getElementById('btnLangToggle');
