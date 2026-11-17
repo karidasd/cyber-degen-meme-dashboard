@@ -166,27 +166,46 @@
     </div>
 
     <!-- Controls -->
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center space-x-1.5 sm:space-x-2">
+      <!-- AI Persona Selector -->
+      <select id="personaSelect" class="bg-black/80 border border-purple-500/60 text-purple-300 font-mono text-xs px-2 py-1.5 rounded focus:outline-none cursor-pointer">
+        <option value="chad">🚀 BASED CHAD</option>
+        <option value="quant">📈 QUANT ANALYST</option>
+        <option value="greek" selected>🇬🇷 GREEK DEGEN</option>
+      </select>
+
+      <!-- OBS Green Screen Mode -->
+      <button id="btnGreenScreen" class="px-2.5 py-1.5 rounded font-mono text-xs border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60 transition-all flex items-center space-x-1" title="Toggle OBS Chroma Key Green Screen">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+        <span class="hidden sm:inline">OBS GREEN</span>
+      </button>
+
+      <!-- Cyber Synth Ambient BGM -->
+      <button id="btnBgmToggle" class="px-2.5 py-1.5 rounded font-mono text-xs border border-cyan-500/40 bg-cyan-950/30 text-cyan-300 hover:bg-cyan-900/50 transition-all flex items-center space-x-1" title="Toggle 24/7 Cyberpunk Radio BGM">
+        <span>🎵</span>
+        <span id="bgmStatusLabel" class="hidden sm:inline">BGM: OFF</span>
+      </button>
+
+      <!-- Simulated TikTok Chat Toggle -->
+      <button id="btnChatToggle" class="px-2.5 py-1.5 rounded font-mono text-xs border border-pink-500/50 bg-pink-950/40 text-pink-300 hover:bg-pink-900/60 transition-all flex items-center space-x-1">
+        <span>💬</span>
+        <span class="hidden sm:inline">CHAT</span>
+      </button>
+
       <!-- TikTok Pump/Dump Triggers -->
       <div class="flex items-center bg-black/60 border border-gray-800 rounded p-1 space-x-1">
-        <button id="btnPumpTrigger" title="Laser Eyes & Mega Pump Reaction" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/40 border border-emerald-500/40 transition-all flex items-center space-x-1">
+        <button id="btnPumpTrigger" title="Laser Eyes & Mega Pump Reaction" class="px-2 py-1 text-xs font-mono font-bold rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/40 border border-emerald-500/40 transition-all flex items-center space-x-1">
           <span>🚀</span>
           <span>PUMP</span>
         </button>
-        <button id="btnDumpTrigger" title="Red Alert Siren & Dump Reaction" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-red-500/20 text-red-300 hover:bg-red-500/40 border border-red-500/40 transition-all flex items-center space-x-1">
+        <button id="btnDumpTrigger" title="Red Alert Siren & Dump Reaction" class="px-2 py-1 text-xs font-mono font-bold rounded bg-red-500/20 text-red-300 hover:bg-red-500/40 border border-red-500/40 transition-all flex items-center space-x-1">
           <span>🚨</span>
           <span>RUG</span>
         </button>
       </div>
 
-      <!-- TikTok Mode Button -->
-      <button id="btnTiktokMode" class="px-3 py-1.5 rounded font-mono text-xs border border-gray-700 bg-gray-900/60 text-gray-300 hover:text-white transition-all flex items-center space-x-1.5">
-        <span class="text-pink-400">📱</span>
-        <span class="hidden md:inline">TIKTOK MODE</span>
-      </button>
-
       <!-- Language Toggle -->
-      <button id="btnLangToggle" class="px-2.5 py-1.5 rounded bg-gray-900/60 border border-gray-700 text-xs font-mono text-cyan-300 hover:border-cyan-500/40 transition-all">
+      <button id="btnLangToggle" class="px-2 py-1.5 rounded bg-gray-900/60 border border-gray-700 text-xs font-mono text-cyan-300 hover:border-cyan-500/40 transition-all">
         🇬🇷 ΕΛ
       </button>
 
@@ -231,6 +250,20 @@
             <div id="targetBadge" class="bg-black/85 backdrop-blur-md px-3 py-1.5 rounded border border-yellow-500/40 text-xs font-mono text-yellow-400">
               LOCKED: <span class="font-bold" id="targetCoinSymbol">PEPE</span>
             </div>
+          </div>
+        </div>
+
+        <!-- Simulated TikTok Live Chat Overlay -->
+        <div id="tiktokChatWidget" class="absolute right-3 bottom-14 w-60 max-h-48 overflow-hidden pointer-events-auto bg-black/85 backdrop-blur-md rounded-xl border border-pink-500/40 p-2.5 font-mono text-[11px] space-y-1.5 shadow-2xl z-30 transition-all">
+          <div class="flex items-center justify-between pb-1 border-b border-gray-800 text-[10px] text-pink-300 font-bold">
+            <span class="flex items-center space-x-1">
+              <span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span>
+              <span>TIKTOK LIVE CHAT</span>
+            </span>
+            <button id="btnSendTestGift" class="px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-300 hover:bg-pink-500/40 text-[9px] transition-all">GIFT 🌌</button>
+          </div>
+          <div id="chatMessagesList" class="space-y-1 overflow-y-auto max-h-36 pr-1">
+            <!-- Populated via script -->
           </div>
         </div>
       </div>
@@ -374,6 +407,22 @@
     </div>
 
   </main>
+
+  <!-- LIVE WHALE & LIQUIDATION RADAR MARQUEE TICKER -->
+  <div class="relative z-30 bg-[#030612] border-y border-cyan-500/25 py-2 px-4 overflow-hidden flex items-center font-mono text-xs shadow-inner">
+    <div class="flex items-center space-x-2 text-cyan-400 font-bold pr-4 border-r border-gray-800 shrink-0">
+      <span class="animate-pulse text-base">🐋</span>
+      <span class="tracking-wider">WHALE RADAR:</span>
+    </div>
+    <div class="overflow-hidden whitespace-nowrap flex-1 ml-3 relative">
+      <div id="whaleTickerTrack" class="inline-block text-gray-300 font-mono transition-transform duration-1000">
+        <span class="text-emerald-400 font-bold">🐋 WHALE SWAP: +$340,000 WIF ON RAYDIUM</span> &bull; 
+        <span class="text-red-400 font-bold">💥 $1.85M SHORT LIQUIDATED ON DOGE</span> &bull; 
+        <span class="text-yellow-400 font-bold">🚨 42,000,000,000 PEPE TRANSFERRED TO COLD STORAGE</span> &bull; 
+        <span class="text-purple-400 font-bold">🔥 BONK BOT BURN: 850M TOKENS DESTROYED</span>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="relative z-30 border-t border-cyan-500/20 bg-[#060a1d]/90 px-4 py-2 font-mono text-xs text-gray-500 flex flex-wrap items-center justify-between gap-2">
@@ -1517,6 +1566,175 @@
       ctx.shadowBlur = 0;
     }
 
+    // --- 9. STREAMER TOOLKIT: BGM, OBS GREEN SCREEN, CHAT & WHALE RADAR ---
+    class AmbientSynthEngine {
+      constructor() {
+        this.ctx = null;
+        this.isPlaying = false;
+        this.gainNode = null;
+        this.osc1 = null;
+        this.osc2 = null;
+      }
+      init() {
+        if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      }
+      toggle() {
+        if (this.isPlaying) {
+          this.stop();
+        } else {
+          this.start();
+        }
+        return this.isPlaying;
+      }
+      start() {
+        this.init();
+        if (!this.ctx) return;
+        if (this.ctx.state === 'suspended') this.ctx.resume();
+
+        this.gainNode = this.ctx.createGain();
+        this.gainNode.gain.setValueAtTime(0.06, this.ctx.currentTime);
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(420, this.ctx.currentTime);
+
+        this.osc1 = this.ctx.createOscillator();
+        this.osc1.type = 'sawtooth';
+        this.osc1.frequency.setValueAtTime(55, this.ctx.currentTime); // A1
+
+        this.osc2 = this.ctx.createOscillator();
+        this.osc2.type = 'triangle';
+        this.osc2.frequency.setValueAtTime(82.4, this.ctx.currentTime); // E2
+
+        this.osc1.connect(filter);
+        this.osc2.connect(filter);
+        filter.connect(this.gainNode);
+        this.gainNode.connect(this.ctx.destination);
+
+        this.osc1.start();
+        this.osc2.start();
+        this.isPlaying = true;
+      }
+      stop() {
+        if (this.gainNode && this.ctx) {
+          try {
+            this.gainNode.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 0.3);
+            setTimeout(() => {
+              try {
+                if (this.osc1) this.osc1.stop();
+                if (this.osc2) this.osc2.stop();
+              } catch(e) {}
+              this.isPlaying = false;
+            }, 300);
+          } catch(e) {
+            this.isPlaying = false;
+          }
+        }
+      }
+    }
+    const bgm = new AmbientSynthEngine();
+
+    // OBS Green Screen Mode
+    let isGreenScreen = false;
+    function toggleGreenScreen() {
+      sound.playBlip();
+      isGreenScreen = !isGreenScreen;
+      const btn = document.getElementById('btnGreenScreen');
+      const body = document.body;
+      const robotFrame = document.getElementById('robotFrame');
+      const scanlines = document.querySelector('.crt-scanlines');
+
+      if (isGreenScreen) {
+        body.style.backgroundColor = '#00ff00';
+        body.classList.remove('cyber-grid');
+        if (scanlines) scanlines.style.display = 'none';
+        robotFrame.style.backgroundColor = '#00ff00';
+        robotFrame.style.borderColor = '#00ff00';
+        robotFrame.style.boxShadow = 'none';
+        btn.className = 'px-2.5 py-1.5 rounded font-mono text-xs border border-emerald-400 bg-emerald-400 text-black font-bold transition-all';
+      } else {
+        body.style.backgroundColor = '#04060f';
+        body.classList.add('cyber-grid');
+        if (scanlines) scanlines.style.display = 'block';
+        robotFrame.style.backgroundColor = '';
+        robotFrame.style.borderColor = '';
+        robotFrame.style.boxShadow = '';
+        btn.className = 'px-2.5 py-1.5 rounded font-mono text-xs border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60 transition-all flex items-center space-x-1';
+      }
+    }
+
+    // Simulated TikTok Chat
+    const sampleComments = [
+      { user: '@alex_degen', text: 'PEPE TO THE MOON! 🚀', color: 'text-cyan-400' },
+      { user: '@elena_crypto', text: 'WIF hat stays ON! 🧶', color: 'text-pink-400' },
+      { user: '@solana_whale', text: 'Huge buy wall on BONK! 🔨', color: 'text-yellow-400' },
+      { user: '@nikos_quant', text: 'RSI divergence holding strong 📈', color: 'text-emerald-400' },
+      { user: '@greece_trader', text: 'Μην πουλάτε μάγκες πάμε για ATH!', color: 'text-purple-400' },
+      { user: '@crypto_fan', text: 'sent 100 HEARTS ❤️', color: 'text-red-400' },
+    ];
+
+    function pushChatMessage(user, text, color) {
+      const container = document.getElementById('chatMessagesList');
+      if (!container) return;
+      const div = document.createElement('div');
+      div.className = 'text-[10px] leading-tight truncate';
+      div.innerHTML = `<strong class="${color}">${user}:</strong> <span class="text-gray-200">${text}</span>`;
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      if (container.children.length > 20) {
+        container.removeChild(container.firstChild);
+      }
+    }
+
+    function startChatSimulator() {
+      // Add initial greetings
+      pushChatMessage('@system', 'Live TikTok chat stream connected', 'text-pink-400');
+      pushChatMessage('@alex_degen', 'PEPE TO THE MOON! 🚀', 'text-cyan-400');
+      pushChatMessage('@greece_trader', 'Πάμε γερά με τα memecoins!', 'text-purple-400');
+
+      setInterval(() => {
+        const item = sampleComments[Math.floor(Math.random() * sampleComments.length)];
+        pushChatMessage(item.user, item.text, item.color);
+      }, 3500);
+    }
+
+    function sendGiftSimulation() {
+      sound.playCash();
+      pushChatMessage('@darkais_fan', 'sent a GALAXY 🌌 to Robot!', 'text-yellow-300 font-bold');
+      if (window.confetti) {
+        window.confetti({ particleCount: 120, spread: 85, origin: { y: 0.55 } });
+      }
+      const giftSpeech = currentLang === 'el-GR' 
+        ? 'Ευχαριστώ για το Galaxy! Laser eyes ενεργοποιημένα για το chat!'
+        : 'Thank you for the Galaxy! Laser eyes fired for the chat!';
+      document.getElementById('speechTranscriptText').textContent = giftSpeech;
+      sound.speak(giftSpeech);
+      triggerPumpMode();
+    }
+
+    // Whale Radar Live Rotation
+    const sampleWhaleAlerts = [
+      { text: '🐋 WHALE SWAP: +$340,000 WIF ON RAYDIUM', color: 'text-emerald-400' },
+      { text: '💥 $1.85M SHORT LIQUIDATED ON DOGE', color: 'text-red-400' },
+      { text: '🚨 42,000,000,000 PEPE TRANSFERRED TO COLD STORAGE', color: 'text-yellow-400' },
+      { text: '🔥 BONK BOT BURN: 850M TOKENS DESTROYED', color: 'text-purple-400' },
+      { text: '🐋 WHALE ACCUMULATION: +$520,000 SHIB ON BINANCE', color: 'text-cyan-400' },
+      { text: '⚡ POPCAT LIQUIDITY POOL INFLOW +$140,000', color: 'text-emerald-300' },
+    ];
+
+    function startWhaleRadar() {
+      let idx = 0;
+      setInterval(() => {
+        const track = document.getElementById('whaleTickerTrack');
+        if (!track) return;
+        idx = (idx + 1) % sampleWhaleAlerts.length;
+        const item = sampleWhaleAlerts[idx];
+        track.innerHTML = `<span class="${item.color} font-bold">${item.text}</span> &bull; <span class="text-gray-400">REAL-TIME ON-CHAIN MEME SCANNER</span>`;
+      }, 4500);
+    }
+
     // --- 8. UI CONTROLS & EVENT LISTENERS ---
     window.addEventListener('DOMContentLoaded', async () => {
       initThreeRobot();
@@ -1541,12 +1759,50 @@
         }
       }, 1000);
 
-      // Buttons
+      // Buttons & Streamer Tools
       document.getElementById('btnExecuteScan').addEventListener('click', executeScan);
       document.getElementById('btnMarketSummary').addEventListener('click', executeMarketSummary);
       document.getElementById('btnPumpTrigger').addEventListener('click', triggerPumpMode);
       document.getElementById('btnDumpTrigger').addEventListener('click', triggerDumpMode);
       document.getElementById('btnAutoStreamerVoice').addEventListener('click', toggleAutoVoice);
+      
+      // OBS Green Screen Button
+      const greenBtn = document.getElementById('btnGreenScreen');
+      if (greenBtn) greenBtn.addEventListener('click', toggleGreenScreen);
+
+      // Cyber Synth BGM Button
+      const bgmBtn = document.getElementById('btnBgmToggle');
+      if (bgmBtn) {
+        bgmBtn.addEventListener('click', () => {
+          sound.playBlip();
+          const active = bgm.toggle();
+          const lbl = document.getElementById('bgmStatusLabel');
+          if (lbl) lbl.textContent = active ? 'BGM: ON' : 'BGM: OFF';
+          bgmBtn.className = active
+            ? 'px-2.5 py-1.5 rounded font-mono text-xs border border-cyan-400 bg-cyan-950/80 text-cyan-300 shadow-lg shadow-cyan-500/20 font-bold transition-all flex items-center space-x-1'
+            : 'px-2.5 py-1.5 rounded font-mono text-xs border border-cyan-500/40 bg-cyan-950/30 text-cyan-300 hover:bg-cyan-900/50 transition-all flex items-center space-x-1';
+        });
+      }
+
+      // TikTok Chat Toggle
+      const chatToggleBtn = document.getElementById('btnChatToggle');
+      if (chatToggleBtn) {
+        chatToggleBtn.addEventListener('click', () => {
+          sound.playBlip();
+          const chat = document.getElementById('tiktokChatWidget');
+          if (chat) {
+            chat.style.display = chat.style.display === 'none' ? 'block' : 'none';
+          }
+        });
+      }
+
+      // Test Gift Button
+      const giftBtn = document.getElementById('btnSendTestGift');
+      if (giftBtn) giftBtn.addEventListener('click', sendGiftSimulation);
+
+      // Start Simulators
+      startChatSimulator();
+      startWhaleRadar();
 
       // Auto-unlock audio context on first click anywhere
       document.body.addEventListener('click', () => { sound.init(); }, { once: true });
