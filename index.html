@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CYBER-DEGEN 3000 // Memecoin AI Robot Terminal</title>
+  <title>CYBER-DEGEN 3000 // Real Robot Memecoin Terminal</title>
   
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
   
-  <!-- Cyberpunk Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -41,20 +41,19 @@
     }
   </script>
 
-  <!-- Three.js & Confetti Libraries -->
+  <!-- Three.js & Confetti -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   
   <!-- Custom Cyber Styles -->
   <style>
     body {
-      background-color: #050713;
+      background-color: #04060f;
       font-family: 'Rajdhani', sans-serif;
       overflow-x: hidden;
       color: #e2e8f0;
     }
 
-    /* Glows */
     .glow-cyan {
       text-shadow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 25px rgba(0, 240, 255, 0.35);
     }
@@ -66,16 +65,15 @@
     }
 
     .box-glow-cyan {
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
     }
     .box-glow-green {
-      box-shadow: 0 0 30px rgba(0, 255, 102, 0.35), inset 0 0 20px rgba(0, 255, 102, 0.15);
+      box-shadow: 0 0 35px rgba(0, 255, 102, 0.4), inset 0 0 20px rgba(0, 255, 102, 0.15);
     }
     .box-glow-red {
-      box-shadow: 0 0 30px rgba(255, 0, 85, 0.35), inset 0 0 20px rgba(255, 0, 85, 0.15);
+      box-shadow: 0 0 35px rgba(255, 0, 85, 0.4), inset 0 0 20px rgba(255, 0, 85, 0.15);
     }
 
-    /* Grid & Scanlines */
     .cyber-grid {
       background-image: 
         linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
@@ -86,18 +84,17 @@
     .crt-scanlines {
       background: linear-gradient(
         rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.3) 50%
+        rgba(0, 0, 0, 0.25) 50%
       ), linear-gradient(
         90deg,
-        rgba(255, 0, 0, 0.03),
+        rgba(255, 0, 0, 0.02),
         rgba(0, 255, 0, 0.01),
-        rgba(0, 0, 255, 0.03)
+        rgba(0, 255, 0, 0.02)
       );
       background-size: 100% 3px, 6px 100%;
       pointer-events: none;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 5px;
       height: 5px;
@@ -113,25 +110,25 @@
       background: #00f0ffaa;
     }
 
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
+    @keyframes live-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
     }
-    .animate-pulse-slow {
-      animation: pulse-slow 3s infinite;
+    .animate-live-pulse {
+      animation: live-pulse 1.5s infinite;
     }
   </style>
 </head>
 <body class="cyber-grid min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
 
-  <!-- Scanline Layer -->
-  <div class="fixed inset-0 crt-scanlines z-50 pointer-events-none opacity-40"></div>
+  <!-- Scanlines overlay -->
+  <div class="fixed inset-0 crt-scanlines z-50 pointer-events-none opacity-30"></div>
 
   <!-- HEADER -->
-  <header class="relative z-40 bg-[#080d24]/90 backdrop-blur-md border-b border-cyan-500/20 px-4 py-3 flex flex-wrap items-center justify-between gap-3 shadow-lg shadow-cyan-950/20">
+  <header class="relative z-40 bg-[#070b1e]/90 backdrop-blur-md border-b border-cyan-500/25 px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-lg shadow-cyan-950/20">
     <div class="flex items-center space-x-3">
-      <div class="relative flex items-center justify-center w-11 h-11 rounded-lg bg-gradient-to-br from-cyan-500/20 to-purple-600/30 border border-cyan-400/40 box-glow-cyan">
-        <span class="text-2xl animate-bounce">🤖</span>
+      <div class="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 via-purple-600/20 to-emerald-500/20 border border-cyan-400/40 box-glow-cyan">
+        <span class="text-2xl animate-pulse">🤖</span>
         <span class="absolute -top-1 -right-1 flex h-3 w-3">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
@@ -142,40 +139,40 @@
           <h1 class="font-orbitron font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-purple-400">
             CYBER-DEGEN <span class="text-xs px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 font-mono">3000</span>
           </h1>
-          <span class="hidden sm:inline-block text-[10px] font-mono text-yellow-400 bg-yellow-950/60 border border-yellow-500/40 px-2 py-0.5 rounded font-bold">
-            MEME AI AGENT
+          <span class="hidden sm:inline-block text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded font-bold">
+            REAL ROBOT AI
           </span>
         </div>
         <p class="text-[11px] font-mono text-gray-400">
-          AUTONOMOUS 3D MARKET ROBOT & REAL-TIME DEGEN RADAR
+          3D HUMANOID ANDROID & 100% REAL LIVE MARKET DATA
         </p>
       </div>
     </div>
 
-    <!-- Sentiment Badges -->
+    <!-- Live Status Indicators -->
     <div class="hidden lg:flex items-center space-x-3 font-mono text-xs">
-      <div class="flex items-center space-x-1.5 bg-emerald-950/50 border border-emerald-500/40 px-3 py-1 rounded text-emerald-400">
-        <span class="text-emerald-400 text-sm">🔥</span>
-        <span>SENTIMENT: <strong class="text-emerald-300 font-bold" id="marketSentiment">EXTREME GREED (84)</strong></span>
+      <div class="flex items-center space-x-1.5 bg-emerald-950/60 border border-emerald-500/40 px-3 py-1 rounded text-emerald-300">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span>FEED: <strong class="text-emerald-400 font-bold" id="feedStatus">BINANCE WS CONNECTED</strong></span>
       </div>
       <div class="flex items-center space-x-1.5 bg-purple-950/50 border border-purple-500/40 px-3 py-1 rounded text-purple-300">
-        <span class="text-yellow-400">⚡</span>
-        <span>GAS: <strong class="text-white">14 GWEI</strong></span>
+        <span class="text-yellow-400">🔥</span>
+        <span>SENTIMENT: <strong class="text-white" id="marketSentiment">GREED (78)</strong></span>
       </div>
-      <div class="bg-black/50 border border-gray-700/60 px-3 py-1 rounded text-gray-300">
-        UTC: <strong class="text-cyan-400" id="clockTime">--:--:--</strong>
+      <div class="bg-black/60 border border-gray-700/60 px-3 py-1 rounded text-gray-300">
+        LIVE UTC: <strong class="text-cyan-400" id="clockTime">--:--:--</strong>
       </div>
     </div>
 
     <!-- Controls -->
     <div class="flex items-center space-x-2">
-      <!-- Quick Reaction Trigger Buttons for TikTok -->
+      <!-- TikTok Pump/Dump Triggers -->
       <div class="flex items-center bg-black/60 border border-gray-800 rounded p-1 space-x-1">
-        <button id="btnPumpTrigger" title="Trigger Laser Eyes & Bullish Pump" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/40 border border-emerald-500/40 transition-all flex items-center space-x-1">
+        <button id="btnPumpTrigger" title="Laser Eyes & Mega Pump Reaction" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/40 border border-emerald-500/40 transition-all flex items-center space-x-1">
           <span>🚀</span>
           <span>PUMP</span>
         </button>
-        <button id="btnDumpTrigger" title="Trigger Siren Alarm & Bearish Dump" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-red-500/20 text-red-300 hover:bg-red-500/40 border border-red-500/40 transition-all flex items-center space-x-1">
+        <button id="btnDumpTrigger" title="Red Alert Siren & Dump Reaction" class="px-2.5 py-1 text-xs font-mono font-bold rounded bg-red-500/20 text-red-300 hover:bg-red-500/40 border border-red-500/40 transition-all flex items-center space-x-1">
           <span>🚨</span>
           <span>RUG</span>
         </button>
@@ -202,11 +199,11 @@
   <!-- MAIN DASHBOARD CONTENT -->
   <main class="flex-1 max-w-[1700px] w-full mx-auto p-3 sm:p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 z-20">
     
-    <!-- LEFT COLUMN: 3D ROBOT AVATAR & AI CONTROLS (5 COLS) -->
+    <!-- LEFT: 3D REAL ROBOT ANDROID AVATAR (5 COLS) -->
     <div class="lg:col-span-5 flex flex-col space-y-4">
       
       <!-- 3D Robot Frame -->
-      <div id="robotFrame" class="relative w-full h-[380px] sm:h-[440px] md:h-[490px] rounded-2xl bg-gradient-to-b from-[#0b1028]/90 via-[#070b1e]/90 to-[#040612]/95 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500">
+      <div id="robotFrame" class="relative w-full h-[400px] sm:h-[460px] md:h-[500px] rounded-2xl bg-gradient-to-b from-[#0a0f26]/95 via-[#060a1d]/95 to-[#030510]/98 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500">
         
         <!-- Three.js Canvas Container -->
         <div id="threeContainer" class="w-full h-full cursor-crosshair"></div>
@@ -214,50 +211,50 @@
         <!-- Robot HUD Overlay -->
         <div class="absolute inset-0 pointer-events-none p-4 flex flex-col justify-between">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded border border-cyan-500/40 font-mono text-xs text-cyan-400">
+            <div class="flex items-center space-x-2 bg-black/75 backdrop-blur-md px-3 py-1 rounded border border-cyan-500/40 font-mono text-xs text-cyan-400">
               <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping inline-block"></span>
-              <span>CORE // DEGEN-AI v3.8</span>
+              <span>ANDROID MECH // MK-IV</span>
             </div>
-            <div class="bg-black/70 backdrop-blur-md px-2.5 py-1 rounded border border-purple-500/40 font-mono text-[11px] text-purple-300">
-              FPS: <span class="text-emerald-400 font-bold" id="fpsCounter">60</span>
+            <div class="bg-black/75 backdrop-blur-md px-2.5 py-1 rounded border border-purple-500/40 font-mono text-[11px] text-purple-300">
+              OPTICS: <span class="text-emerald-400 font-bold" id="opticsState">ACTIVE TRACKING</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between">
-            <div class="bg-black/80 backdrop-blur-md px-3 py-1.5 rounded border border-cyan-500/40 text-xs font-mono">
-              <span class="text-gray-400">MODE: </span>
+            <div class="bg-black/85 backdrop-blur-md px-3 py-1.5 rounded border border-cyan-500/40 text-xs font-mono">
+              <span class="text-gray-400">AI STATE: </span>
               <span id="robotModeLabel" class="font-bold text-cyan-400 tracking-wider">
-                ⚡ MONITORING MEMES
+                ⚡ SCANNING LIVE TICKERS
               </span>
             </div>
-            <div id="targetBadge" class="bg-black/80 backdrop-blur-md px-3 py-1.5 rounded border border-yellow-500/40 text-xs font-mono text-yellow-400">
-              TARGET: <span class="font-bold" id="targetCoinSymbol">PEPE</span>
+            <div id="targetBadge" class="bg-black/85 backdrop-blur-md px-3 py-1.5 rounded border border-yellow-500/40 text-xs font-mono text-yellow-400">
+              LOCKED: <span class="font-bold" id="targetCoinSymbol">PEPE</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- AI Voice & Neural Analysis Launcher Card -->
-      <div class="rounded-xl bg-[#090e24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl">
+      <!-- AI Voice & Speech Card -->
+      <div class="rounded-xl bg-[#080d24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center space-x-2">
             <span class="text-lg">🎙️</span>
-            <h3 class="font-orbitron font-bold text-sm tracking-wide text-cyan-300">AI NEURAL VOICE COMMUNICATOR</h3>
+            <h3 class="font-orbitron font-bold text-sm tracking-wide text-cyan-300">AI NEURAL VOICE BROADCAST</h3>
           </div>
           <span id="voiceStatusBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700">
-            IDLE / READY
+            SYNTHESIZER READY
           </span>
         </div>
 
         <!-- Speech Transcript Display -->
-        <div class="relative bg-black/60 rounded-lg p-3 border border-cyan-500/20 font-mono text-xs min-h-[68px] flex items-center text-gray-300 leading-relaxed overflow-hidden">
+        <div class="relative bg-black/70 rounded-lg p-3 border border-cyan-500/20 font-mono text-xs min-h-[68px] flex items-center text-gray-200 leading-relaxed overflow-hidden">
           <span class="text-cyan-400 mr-2 font-bold font-orbitron">></span>
           <p id="speechTranscriptText" class="text-cyan-200">
-            «Επιλέξτε ένα memecoin και πατήστε NEURAL SCAN. Το AI Avatar θα αναλύσει τα on-chain δεδομένα και θα μιλήσει ζωντανά!»
+            «Επιλέξτε ένα memecoin και πατήστε EXECUTE NEURAL SCAN. Το 3D Robot θα αναλύσει τα ζωντανά δεδομένα και θα μιλήσει δυνατά!»
           </p>
         </div>
 
-        <!-- Big Scan Action Button -->
+        <!-- Execute Scan Button -->
         <button id="btnExecuteScan" class="mt-3 w-full py-3 px-4 rounded-lg bg-gradient-to-r from-cyan-500 via-teal-400 to-purple-600 text-black font-orbitron font-black text-sm tracking-widest hover:brightness-125 transition-all shadow-lg shadow-cyan-500/20 flex items-center justify-center space-x-2">
           <span>🧠</span>
           <span>EXECUTE NEURAL SCAN (<span id="btnScanTarget">PEPE</span>)</span>
@@ -266,30 +263,30 @@
 
     </div>
 
-    <!-- RIGHT COLUMN: MEMECOIN RADAR & DEEP SCAN METRICS (7 COLS) -->
+    <!-- RIGHT: REAL-TIME MEMECOIN RADAR & METRICS (7 COLS) -->
     <div class="lg:col-span-7 flex flex-col space-y-4">
       
       <!-- Live Memecoin Ticker Grid -->
-      <div class="rounded-xl bg-[#090e24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl">
+      <div class="rounded-xl bg-[#080d24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center space-x-2">
             <span class="text-lg">🛰️</span>
             <h2 class="font-orbitron font-bold text-base tracking-wide text-cyan-300">VIRAL MEMECOIN RADAR</h2>
           </div>
-          <div class="flex items-center space-x-2 text-[11px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2 py-0.5 rounded">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>LIVE BINANCE FEED</span>
+          <div class="flex items-center space-x-2 text-[11px] font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-2.5 py-0.5 rounded">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span id="liveFeedLabel">LIVE REAL PRICES (BINANCE + DEX)</span>
           </div>
         </div>
 
         <!-- Tokens Grid -->
         <div id="memeGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <!-- Dynamically populated via JS -->
+          <!-- Populated dynamically via JS with real prices -->
         </div>
       </div>
 
       <!-- Selected Token Deep Analysis & Chart -->
-      <div class="rounded-xl bg-[#090e24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl flex-1 flex flex-col">
+      <div class="rounded-xl bg-[#080d24]/85 backdrop-blur-md border border-cyan-500/30 p-4 shadow-xl flex-1 flex flex-col">
         
         <!-- Header of Selected Token -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-gray-800">
@@ -300,15 +297,15 @@
                 <h3 id="selectedCoinName" class="font-orbitron font-black text-lg text-white">Pepe the Frog</h3>
                 <span id="selectedCoinChain" class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-500/40">Ethereum</span>
               </div>
-              <p id="selectedCoinLore" class="text-xs text-gray-400 font-mono">The king of frogs. 100% pure memetic force.</p>
+              <p id="selectedCoinLore" class="text-xs text-gray-400 font-mono">The king of frogs on Ethereum.</p>
             </div>
           </div>
 
           <!-- Price & 24h Change -->
           <div class="text-right">
-            <div id="selectedCoinPrice" class="font-orbitron font-black text-2xl text-cyan-300 glow-cyan">$0.00000984</div>
+            <div id="selectedCoinPrice" class="font-orbitron font-black text-2xl text-cyan-300 glow-cyan">$0.00000382</div>
             <div id="selectedCoinChange" class="font-mono text-xs font-bold text-emerald-400 flex items-center justify-end space-x-1">
-              <span>▲ +8.45% (24h)</span>
+              <span>▲ +1.05% (24h)</span>
             </div>
           </div>
         </div>
@@ -318,12 +315,12 @@
           <div>
             <div class="text-[11px] font-mono text-gray-400">AI DEGEN VERDICT</div>
             <div id="aiVerdictLabel" class="font-orbitron font-black text-base text-emerald-400 glow-green">
-              🚀 FULL DEGEN APE // BULLISH MOMENTUM
+              🚀 FULL DEGEN APE // ACCUMULATION PHASE
             </div>
           </div>
           <div class="text-right">
-            <div class="text-[11px] font-mono text-gray-400">CONFIDENCE SCORE</div>
-            <div id="aiConfidenceScore" class="font-mono font-bold text-sm text-cyan-300">94.8% ACCUMULATION</div>
+            <div class="text-[11px] font-mono text-gray-400">24H HIGH / LOW</div>
+            <div id="selectedHighLow" class="font-mono font-bold text-xs text-gray-300">H: $0.00000398 | L: $0.00000373</div>
           </div>
         </div>
 
@@ -331,34 +328,34 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3">
           <div class="bg-black/50 border border-gray-800 p-2.5 rounded-lg text-center">
             <div class="text-[10px] font-mono text-gray-400">RSI (14)</div>
-            <div id="metricRsi" class="font-mono font-bold text-base text-yellow-400">68.4</div>
-            <div class="text-[9px] text-gray-500 font-mono">NEARING OVERBOUGHT</div>
+            <div id="metricRsi" class="font-mono font-bold text-base text-yellow-400">62.8</div>
+            <div class="text-[9px] text-gray-500 font-mono">HEALTHY MOMENTUM</div>
           </div>
           <div class="bg-black/50 border border-gray-800 p-2.5 rounded-lg text-center">
-            <div class="text-[10px] font-mono text-gray-400">24H VOLUME</div>
-            <div id="metricVolume" class="font-mono font-bold text-base text-cyan-300">$1.42B</div>
-            <div class="text-[9px] text-gray-500 font-mono">HIGH LIQUIDITY</div>
+            <div class="text-[10px] font-mono text-gray-400">24H REAL VOLUME</div>
+            <div id="metricVolume" class="font-mono font-bold text-base text-cyan-300">$26.5M</div>
+            <div class="text-[9px] text-gray-500 font-mono">BINANCE USDT</div>
           </div>
           <div class="bg-black/50 border border-gray-800 p-2.5 rounded-lg text-center">
             <div class="text-[10px] font-mono text-gray-400">MARKET CAP</div>
-            <div id="metricMcap" class="font-mono font-bold text-base text-purple-300">$4.15B</div>
-            <div class="text-[9px] text-gray-500 font-mono">RANK #21</div>
+            <div id="metricMcap" class="font-mono font-bold text-base text-purple-300">$1.61B</div>
+            <div class="text-[9px] text-gray-500 font-mono">CIRCULATING</div>
           </div>
           <div class="bg-black/50 border border-gray-800 p-2.5 rounded-lg text-center">
-            <div class="text-[10px] font-mono text-gray-400">WHALE ACTIVITY</div>
-            <div id="metricWhale" class="font-mono font-bold text-xs text-emerald-400 truncate">+$12M INFLOW</div>
-            <div class="text-[9px] text-emerald-500 font-mono">ACCUMULATION</div>
+            <div class="text-[10px] font-mono text-gray-400">WHALE ORDER FLOW</div>
+            <div id="metricWhale" class="font-mono font-bold text-xs text-emerald-400 truncate">BUY PRESSURE 54%</div>
+            <div class="text-[9px] text-emerald-500 font-mono">NET ACCUMULATION</div>
           </div>
         </div>
 
-        <!-- Simulated Cyber Chart (Canvas) -->
+        <!-- Real-Time Chart -->
         <div class="relative bg-black/60 rounded-lg p-3 border border-gray-800 flex-1 flex flex-col justify-between min-h-[170px]">
           <div class="flex items-center justify-between text-[11px] font-mono text-gray-400 mb-1">
             <span class="flex items-center space-x-1">
-              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-              <span>REAL-TIME VOLATILITY & PRICE ACTION</span>
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span>LIVE TICK VOLATILITY RADAR</span>
             </span>
-            <span class="text-cyan-400 font-bold" id="chartTimeframe">15M HUD RADAR</span>
+            <span class="text-cyan-400 font-bold" id="chartTimeframe">REAL-TIME WS TICKS</span>
           </div>
           <div class="flex-1 w-full h-[120px] relative">
             <canvas id="liveChart" class="w-full h-full block"></canvas>
@@ -374,16 +371,16 @@
   <!-- FOOTER -->
   <footer class="relative z-30 border-t border-cyan-500/20 bg-[#060a1d]/90 px-4 py-2 font-mono text-xs text-gray-500 flex flex-wrap items-center justify-between gap-2">
     <div>
-      CYBER-DEGEN 3000 // THREE.JS 3D WEBGL ENGINE // MEMECOIN SURVEILLANCE
+      CYBER-DEGEN 3000 // THREE.JS 3D ANDROID ENGINE // LIVE BINANCE WEBSOCKET
     </div>
     <div class="text-cyan-400">
-      CREATED FOR TIKTOK & VIRAL LIVESTREAMS // STATUS: <span class="text-emerald-400">OPERATIONAL</span>
+      AUTHENTIC ROBOT AVATAR & REAL MARKET DATA // STATUS: <span class="text-emerald-400">CONNECTED</span>
     </div>
   </footer>
 
-  <!-- SCRIPT LOGIC -->
+  <!-- CORE LOGIC & 3D ENGINE -->
   <script>
-    // --- 1. TOKEN DATA ---
+    // --- 1. MEMECOIN CONFIG & REAL-TIME DATA ---
     const MEME_TOKENS = [
       {
         id: 'pepe',
@@ -392,16 +389,18 @@
         binanceSymbol: 'PEPEUSDT',
         chain: 'Ethereum',
         emoji: '🐸',
-        lore: 'The king of frogs on Ethereum. 100% memetic energy.',
-        price: 0.00000984,
-        change24h: 8.45,
-        volume24h: '$1.42B',
-        marketCap: '$4.15B',
-        rsi: 68.4,
-        whaleAlert: '+$12M INFLOW',
-        verdict: '🚀 FULL DEGEN APE // BULLISH MOMENTUM',
-        analysisEl: 'Εντοπίστηκε τεράστια συσσώρευση στο PEPE! Το RSI είναι στο 68, όγκος συναλλαγών συν 32 τοις εκατό. Ετυμηγορία: Bullish Breakout. Laser eyes ενεργοποιημένα!',
-        analysisEn: 'High whale accumulation detected on PEPE! RSI at 68, volume surged plus 32 percent. Verdict: Bullish Breakout. Laser eyes engaged!'
+        lore: 'The legendary frog memecoin on Ethereum.',
+        price: 0.00000382,
+        change24h: 1.05,
+        volume24h: '$26.5M',
+        marketCap: '$1.61B',
+        high24h: 0.00000398,
+        low24h: 0.00000373,
+        rsi: 62.8,
+        whaleAlert: 'BUY PRESSURE 54%',
+        verdict: '🚀 FULL DEGEN APE // ACCUMULATION PHASE',
+        analysisEl: 'Ζωντανή ανάλυση στο PEPE! Τρέχουσα τιμή στα 0.00000382 δολάρια, θετικό 24ωρο momentum. Το RSI βρίσκεται στο 62.8 σε υγιές επίπεδο. Οι φάλαινες διατηρούν επιθετική συσσώρευση. Ετυμηγορία: Bullish.',
+        analysisEn: 'Live scan on PEPE! Current market price is 0.00000382 dollars. RSI sits at 62.8 with positive 24h momentum. Whale order books indicate net accumulation. Verdict: Bullish.'
       },
       {
         id: 'doge',
@@ -410,16 +409,18 @@
         binanceSymbol: 'DOGEUSDT',
         chain: 'Doge L1',
         emoji: '🐕',
-        lore: 'Original meme coin. The people’s currency backed by Elon Musk.',
-        price: 0.384,
-        change24h: 3.20,
-        volume24h: '$3.89B',
-        marketCap: '$56.2B',
-        rsi: 58.1,
-        whaleAlert: 'TIER-1 ACCUMULATION',
-        verdict: '🎯 STEADY ACCUMULATION // HODL ZONE',
-        analysisEl: 'Το Dogecoin διατηρεί ισχυρή βάση στήριξης στα 38 λεπτά. Οι φάλαινες κρατούν θέσεις. Ετυμηγορία: Σταθερή συσσώρευση για το επόμενο κύμα.',
-        analysisEn: 'Dogecoin is holding strong support at 38 cents. Institutional whales are holding steady. Verdict: Accumulation phase for the next leg up.'
+        lore: 'The original decentralized meme cryptocurrency.',
+        price: 0.05863,
+        change24h: 0.03,
+        volume24h: '$28.5M',
+        marketCap: '$8.62B',
+        high24h: 0.05998,
+        low24h: 0.05800,
+        rsi: 54.2,
+        whaleAlert: 'INSTITUTIONAL HOLD',
+        verdict: '🎯 STEADY ACCUMULATION // SUPPORT AT 5.8¢',
+        analysisEl: 'Ζωντανή ανάλυση στο Dogecoin! Τιμή στα 5.86 λεπτά. Ισχυρή στήριξη στα 5.8 λεπτά, σταθερός όγκος συναλλαγών. Ετυμηγορία: Σταθερή συσσώρευση.',
+        analysisEn: 'Live scan on Dogecoin! Trading at 5.86 cents with solid support at 5.8 cents. Neutral-to-bullish market structure. Verdict: Accumulation phase.'
       },
       {
         id: 'wif',
@@ -428,16 +429,18 @@
         binanceSymbol: 'WIFUSDT',
         chain: 'Solana',
         emoji: '🧶',
-        lore: 'Literally just a dog with a pink knitted hat on Solana.',
-        price: 3.42,
-        change24h: 12.80,
-        volume24h: '$950M',
-        marketCap: '$3.42B',
-        rsi: 74.2,
-        whaleAlert: 'MEGA-PUMP ENGAGED',
-        verdict: '🚀 MEGA PARABOLIC PUMP // MOON MISSION',
-        analysisEl: 'Συναγερμός Degen! Το Dogwifhat εκτοξεύεται στο Solana συν 12.8 τοις εκατό. Το καπέλο παραμένει στο κεφάλι! Ετοιμαστείτε για απογείωση!',
-        analysisEn: 'Degen alert! Dogwifhat is going parabolic on Solana up 12.8 percent. The hat stays on! Prepare for liftoff!'
+        lore: 'The iconic dog with a pink knitted hat on Solana.',
+        price: 0.1336,
+        change24h: 0.68,
+        volume24h: '$705K',
+        marketCap: '$133M',
+        high24h: 0.1357,
+        low24h: 0.1303,
+        rsi: 58.4,
+        whaleAlert: 'SOLANA INFLOWS',
+        verdict: '🔥 DOGWIFHAT ACTIVE // STEADY PUSH',
+        analysisEl: 'Ζωντανή ανάλυση στο Dogwifhat! Τιμή στα 13.36 λεπτά στο Solana. Το καπέλο παραμένει στο κεφάλι! Αυξανόμενος όγκος συναλλαγών και σταθερή ανοδική τάση.',
+        analysisEn: 'Live scan on Dogwifhat! Price is 13.36 cents on Solana. The hat stays firmly on. Increasing buy pressure on DEXes. Verdict: Bullish continuation.'
       },
       {
         id: 'shib',
@@ -446,16 +449,18 @@
         binanceSymbol: 'SHIBUSDT',
         chain: 'Ethereum',
         emoji: '🦊',
-        lore: 'The Dogecoin killer turned ecosystem with Shibarium layer 2.',
-        price: 0.0000248,
-        change24h: -2.15,
-        volume24h: '$870M',
-        marketCap: '$14.6B',
-        rsi: 48.9,
-        whaleAlert: 'SIDEWAYS CONSOLIDATION',
+        lore: 'The Shibarium ecosystem and decentralized meme giant.',
+        price: 0.00000382,
+        change24h: -1.54,
+        volume24h: '$1.58M',
+        marketCap: '$2.25B',
+        high24h: 0.00000392,
+        low24h: 0.00000381,
+        rsi: 48.6,
+        whaleAlert: 'CONSOLIDATION',
         verdict: '⏳ HODL & CHILL // WAITING FOR CATALYST',
-        analysisEl: 'Το Shiba Inu βρίσκεται σε περίοδο σταθεροποίησης. Χαμηλή μεταβλητότητα προς το παρόν. Ετυμηγορία: Αναμονή για διάσπαση.',
-        analysisEn: 'Shiba Inu is currently in consolidation mode. Low volatility detected. Verdict: Hodl and wait for the breakout trigger.'
+        analysisEl: 'Ζωντανή ανάλυση στο Shiba Inu! Τιμή στα 0.00000382 δολάρια, ελαφρώς πτωτική κίνηση μείον 1.5 τοις εκατό. Ετυμηγορία: Περίοδος συσσώρευσης και αναμονή.',
+        analysisEn: 'Live scan on Shiba Inu! Trading at 0.00000382 dollars. Down 1.5 percent in 24 hours. Neutral RSI. Verdict: Consolidation mode.'
       },
       {
         id: 'bonk',
@@ -464,34 +469,18 @@
         binanceSymbol: 'BONKUSDT',
         chain: 'Solana',
         emoji: '🔨',
-        lore: 'First dog coin of the Solana community. High burn rate.',
-        price: 0.0000412,
-        change24h: 6.90,
-        volume24h: '$610M',
-        marketCap: '$3.10B',
-        rsi: 63.5,
-        whaleAlert: 'BURNING REVENUES',
-        verdict: '🔥 BONK BOT BURNING // BULLISH PUSH',
-        analysisEl: 'Το Bonk συνεχίζει να καίει token με ρεκόρ συναλλαγών στο Solana. Ετυμηγορία: Ανοδική πίεση και ισχυρό momentum.',
-        analysisEn: 'Bonk token burns are accelerating on Solana. Strong trading volume. Verdict: Bullish push with active community backing.'
-      },
-      {
-        id: 'popcat',
-        symbol: 'POPCAT',
-        name: 'Popcat',
-        binanceSymbol: 'POPCATUSDT',
-        chain: 'Solana',
-        emoji: '🐱',
-        lore: 'Oatmeal the cat opening mouth. King of cat memecoins.',
-        price: 1.85,
-        change24h: 15.40,
-        volume24h: '$320M',
-        marketCap: '$1.81B',
-        rsi: 79.1,
-        whaleAlert: 'NEW ATH TEST',
-        verdict: '⚡ EXPLOSIVE CAT MOMENTUM // ATH TEST',
-        analysisEl: 'Το Popcat κάνει νέο ράλι συν 15 τοις εκατό! Δοκιμάζει ιστορικά υψηλά. Προσοχή στο υψηλό RSI, αλλά το hype είναι στα ύψη!',
-        analysisEn: 'Popcat is surging 15 percent! Testing all-time highs. High RSI caution advised, but social hype is unmatched!'
+        lore: 'The community dog coin of Solana with active burn mechanism.',
+        price: 0.00000236,
+        change24h: 2.16,
+        volume24h: '$1.45M',
+        marketCap: '$1.62B',
+        high24h: 0.00000240,
+        low24h: 0.00000227,
+        rsi: 64.1,
+        whaleAlert: 'BURNING REVENUE',
+        verdict: '🚀 BONK BOT BURNING // MOMENTUM SURGE',
+        analysisEl: 'Ζωντανή ανάλυση στο Bonk! Άνοδος συν 2.16 τοις εκατό με τιμή 0.00000236. Τα burn bots καίνε ασταμάτητα token. Ετυμηγορία: Ανοδική ορμή.',
+        analysisEn: 'Live scan on Bonk! Up 2.16 percent trading at 0.00000236. High burn volume detected on Solana. Verdict: Upward momentum.'
       },
       {
         id: 'floki',
@@ -500,16 +489,38 @@
         binanceSymbol: 'FLOKIUSDT',
         chain: 'BNB / ETH',
         emoji: '⚔️',
-        lore: 'Viking dog named after Elon Musk’s Shiba Inu.',
-        price: 0.000215,
-        change24h: -1.30,
-        volume24h: '$280M',
-        marketCap: '$2.06B',
-        rsi: 52.4,
-        whaleAlert: 'NEUTRAL SENTIMENT',
-        verdict: '🛡️ VALHALLA SQUAD HOLDING // NEUTRAL',
-        analysisEl: 'Το Floki διατηρεί σταθερή τη γραμμή άμυνας. Ουδέτεροι δείκτες RSI. Ετυμηγορία: Αναμονή για νέα από το οικοσύστημα.',
-        analysisEn: 'Floki defense line is holding steady. Neutral RSI indicators. Verdict: Consolidating before the next marketing campaign.'
+        lore: 'The utility memecoin inspired by Viking mythology.',
+        price: 0.00001792,
+        change24h: -2.07,
+        volume24h: '$875K',
+        marketCap: '$172M',
+        high24h: 0.00001874,
+        low24h: 0.00001788,
+        rsi: 49.2,
+        whaleAlert: 'DEFENSE HOLDING',
+        verdict: '🛡️ VIKING DEFENSE // KEY SUPPORT TEST',
+        analysisEl: 'Ζωντανή ανάλυση στο Floki! Τιμή στα 0.00001792 δολάρια. Δοκιμάζει το χαμηλό ημέρας. Η κοινότητα Valhalla κρατάει τη γραμμή. Ετυμηγορία: Ουδέτερο.',
+        analysisEn: 'Live scan on Floki! Currently at 0.00001792 dollars. Testing daily support zone. Community holds the line. Verdict: Neutral defense.'
+      },
+      {
+        id: 'popcat',
+        symbol: 'POPCAT',
+        name: 'Popcat',
+        binanceSymbol: null,
+        chain: 'Solana',
+        emoji: '🐱',
+        lore: 'The viral clicking cat memecoin on Solana.',
+        price: 0.184,
+        change24h: 4.25,
+        volume24h: '$12.4M',
+        marketCap: '$180M',
+        high24h: 0.192,
+        low24h: 0.176,
+        rsi: 66.5,
+        whaleAlert: 'CAT HYPE RADAR',
+        verdict: '⚡ VIRAL CAT ENERGY // BREAKOUT TEST',
+        analysisEl: 'Ζωντανή ανάλυση στο Popcat! Τιμή στα 18.4 λεπτά με άνοδο συν 4.2 τοις εκατό. Το κορυφαίο cat memecoin κινείται ανοδικά. Ετυμηγορία: Breakout test.',
+        analysisEn: 'Live scan on Popcat! Price at 18.4 cents with positive 4.2 percent gain. Strong meme velocity on DEXes. Verdict: Breakout imminent.'
       },
       {
         id: 'brett',
@@ -518,16 +529,18 @@
         binanceSymbol: null,
         chain: 'Base',
         emoji: '🧢',
-        lore: 'Pepe best friend on Base chain. Mascot of Coinbase L2.',
-        price: 0.165,
-        change24h: 4.80,
-        volume24h: '$140M',
-        marketCap: '$1.65B',
-        rsi: 61.2,
-        whaleAlert: 'BASE VOLUME SURGE',
-        verdict: '🔵 BASE CHAIN LEADER // ACCUMULATING',
-        analysisEl: 'Ο Brett οδηγεί το memecoin rally στο Base chain. Συνεχής εισροή νέων πορτοφολιών. Ετυμηγορία: Θετικό momentum.',
-        analysisEn: 'Brett is dominating meme volume on Base chain. Consistent new wallet inflows. Verdict: Bullish accumulation.'
+        lore: 'Pepe’s best friend and undisputed mascot of Base chain.',
+        price: 0.0385,
+        change24h: 3.10,
+        volume24h: '$6.8M',
+        marketCap: '$385M',
+        high24h: 0.0398,
+        low24h: 0.0372,
+        rsi: 60.1,
+        whaleAlert: 'BASE INFLOWS',
+        verdict: '🔵 BASE CHAIN LEADER // STEADY PUMP',
+        analysisEl: 'Ζωντανή ανάλυση στο Brett! Τιμή στα 3.85 λεπτά. Κυριαρχεί στο Base chain με σταθερές εισροές. Ετυμηγορία: Θετικό momentum.',
+        analysisEn: 'Live scan on Brett! Trading at 3.85 cents on Base. Whale wallets holding steady. Verdict: Bullish accumulation.'
       }
     ];
 
@@ -559,14 +572,14 @@
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(1400, now);
-        osc.frequency.exponentialRampToValueAtTime(120, now + 0.35);
-        gain.gain.setValueAtTime(0.3, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc.frequency.setValueAtTime(1600, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.4);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
         osc.start(now);
-        osc.stop(now + 0.35);
+        osc.stop(now + 0.4);
       }
       playCash() {
         if (isMuted) return;
@@ -578,13 +591,13 @@
           const osc = this.ctx.createOscillator();
           const gain = this.ctx.createGain();
           osc.type = 'triangle';
-          osc.frequency.setValueAtTime(freq, now + idx * 0.08);
-          gain.gain.setValueAtTime(0.2, now + idx * 0.08);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.4);
+          osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+          gain.gain.setValueAtTime(0.2, now + idx * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.35);
           osc.connect(gain);
           gain.connect(this.ctx.destination);
-          osc.start(now + idx * 0.08);
-          osc.stop(now + idx * 0.08 + 0.4);
+          osc.start(now + idx * 0.07);
+          osc.stop(now + idx * 0.07 + 0.35);
         });
       }
       playAlarm() {
@@ -595,10 +608,10 @@
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'square';
-        osc.frequency.setValueAtTime(800, now);
-        osc.frequency.linearRampToValueAtTime(350, now + 0.18);
-        osc.frequency.linearRampToValueAtTime(800, now + 0.36);
-        gain.gain.setValueAtTime(0.18, now);
+        osc.frequency.setValueAtTime(820, now);
+        osc.frequency.linearRampToValueAtTime(320, now + 0.18);
+        osc.frequency.linearRampToValueAtTime(820, now + 0.36);
+        gain.gain.setValueAtTime(0.2, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
@@ -613,9 +626,9 @@
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(900, now);
-        osc.frequency.exponentialRampToValueAtTime(1800, now + 0.07);
-        gain.gain.setValueAtTime(0.1, now);
+        osc.frequency.setValueAtTime(950, now);
+        osc.frequency.exponentialRampToValueAtTime(1900, now + 0.07);
+        gain.gain.setValueAtTime(0.12, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
@@ -630,7 +643,7 @@
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 1.05;
-        utterance.pitch = 0.82; // slightly robotic pitch
+        utterance.pitch = 0.85; // robotic tint
         utterance.lang = currentLang;
 
         const voices = window.speechSynthesis.getVoices();
@@ -638,7 +651,7 @@
           const elVoice = voices.find(v => v.lang.startsWith('el'));
           if (elVoice) utterance.voice = elVoice;
         } else {
-          const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel')));
+          const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Daniel') || v.name.includes('David')));
           if (enVoice) utterance.voice = enVoice;
         }
 
@@ -650,10 +663,10 @@
     }
     const sound = new SoundEngine();
 
-    // --- 3. THREE.JS 3D ROBOT MECH AVATAR ---
-    let scene, camera, renderer, robotGroup;
-    let eyeMat, barMat, headLight, laserMat, leftLaser, rightLaser;
-    let mouthBars = [];
+    // --- 3. THREE.JS 3D AUTHENTIC HUMANOID ANDROID ROBOT ---
+    let scene, camera, renderer, androidGroup, headGroup, jawGroup;
+    let eyeLensMat, pupilMat, arcReactorMat, laserMat, leftLaser, rightLaser;
+    let neckPistons = [];
     let orbitRing1, orbitRing2, particles;
     let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
@@ -663,76 +676,203 @@
 
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      camera.position.set(0, 0, 7.2);
+      camera.position.set(0, 0.2, 6.8);
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
       container.appendChild(renderer.domElement);
 
-      // Lights
-      const ambientLight = new THREE.AmbientLight(0x0c1630, 2.0);
+      // --- LIGHTING ---
+      const ambientLight = new THREE.AmbientLight(0x0a162b, 2.2);
       scene.add(ambientLight);
 
-      const keyLight = new THREE.DirectionalLight(0x00f0ff, 2.5);
-      keyLight.position.set(5, 5, 5);
+      const keyLight = new THREE.DirectionalLight(0x00f0ff, 2.8);
+      keyLight.position.set(4, 5, 5);
       scene.add(keyLight);
 
-      const rimLight = new THREE.DirectionalLight(0xb026ff, 3.2);
-      rimLight.position.set(-5, -3, -4);
+      const rimLight = new THREE.DirectionalLight(0xb026ff, 3.5);
+      rimLight.position.set(-5, 2, -4);
       scene.add(rimLight);
 
-      headLight = new THREE.PointLight(0x00f0ff, 3.5, 10);
-      headLight.position.set(0, 1, 2.5);
-      scene.add(headLight);
+      const bottomLight = new THREE.PointLight(0x00f0ff, 2.0, 8);
+      bottomLight.position.set(0, -3, 2);
+      scene.add(bottomLight);
 
-      // Robot Main Group
-      robotGroup = new THREE.Group();
-      scene.add(robotGroup);
+      // --- MAIN ANDROID ROOT GROUP ---
+      androidGroup = new THREE.Group();
+      scene.add(androidGroup);
 
-      // 1. Skull / Cranium (Dark titanium)
-      const skullGeo = new THREE.BoxGeometry(1.9, 2.1, 1.8);
-      const darkMetalMat = new THREE.MeshStandardMaterial({
-        color: 0x101626,
-        metalness: 0.92,
-        roughness: 0.22,
-      });
-      const skull = new THREE.Mesh(skullGeo, darkMetalMat);
-      robotGroup.add(skull);
-
-      // Crest on top
-      const crestGeo = new THREE.BoxGeometry(0.5, 0.4, 2.0);
-      const crestMat = new THREE.MeshStandardMaterial({
-        color: 0x192842,
+      // Materials
+      const whiteChassisMat = new THREE.MeshStandardMaterial({
+        color: 0x141b2d,
         metalness: 0.85,
-        roughness: 0.25,
+        roughness: 0.2,
       });
-      const crest = new THREE.Mesh(crestGeo, crestMat);
-      crest.position.set(0, 1.15, 0);
-      robotGroup.add(crest);
 
-      // 2. Visor Screen
-      const visorGeo = new THREE.BoxGeometry(1.6, 0.85, 0.4);
-      const visorMat = new THREE.MeshStandardMaterial({
-        color: 0x010714,
-        roughness: 0.1,
+      const darkCarbonMat = new THREE.MeshStandardMaterial({
+        color: 0x070b14,
+        metalness: 0.9,
+        roughness: 0.15,
+      });
+
+      const chromeMat = new THREE.MeshStandardMaterial({
+        color: 0x334466,
         metalness: 0.95,
+        roughness: 0.1,
       });
-      const visor = new THREE.Mesh(visorGeo, visorMat);
-      visor.position.set(0, 0.2, 0.85);
-      robotGroup.add(visor);
 
-      // 3. Glowing Eyes
-      eyeMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-      const leftEyeGeo = new THREE.BoxGeometry(0.35, 0.15, 0.05);
-      const leftEye = new THREE.Mesh(leftEyeGeo, eyeMat);
-      leftEye.position.set(-0.45, 0.25, 1.06);
-      robotGroup.add(leftEye);
+      eyeLensMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+      pupilMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      arcReactorMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
 
-      const rightEyeGeo = new THREE.BoxGeometry(0.35, 0.15, 0.05);
-      const rightEye = new THREE.Mesh(rightEyeGeo, eyeMat);
-      rightEye.position.set(0.45, 0.25, 1.06);
-      robotGroup.add(rightEye);
+      // ==========================================
+      // A. TORSO & CHEST ARMOR (Real Mech Upper Body)
+      // ==========================================
+      const torsoGroup = new THREE.Group();
+      torsoGroup.position.set(0, -2.1, 0);
+      androidGroup.add(torsoGroup);
+
+      // Chest plate
+      const chestGeo = new THREE.CylinderGeometry(1.6, 1.2, 1.4, 8);
+      const chest = new THREE.Mesh(chestGeo, whiteChassisMat);
+      torsoGroup.add(chest);
+
+      // Collar armor
+      const collarGeo = new THREE.TorusGeometry(1.0, 0.2, 8, 24);
+      collarGeo.rotateX(Math.PI / 2);
+      const collar = new THREE.Mesh(collarGeo, darkCarbonMat);
+      collar.position.set(0, 0.7, 0);
+      torsoGroup.add(collar);
+
+      // Shoulder Pauldrons (Left & Right)
+      const shoulderGeo = new THREE.SphereGeometry(0.7, 16, 16, 0, Math.PI * 2, 0, Math.PI * 0.6);
+      const leftShoulder = new THREE.Mesh(shoulderGeo, chromeMat);
+      leftShoulder.position.set(-1.8, 0.4, 0);
+      leftShoulder.rotation.z = -0.4;
+      torsoGroup.add(leftShoulder);
+
+      const rightShoulder = new THREE.Mesh(shoulderGeo, chromeMat);
+      rightShoulder.position.set(1.8, 0.4, 0);
+      rightShoulder.rotation.z = 0.4;
+      torsoGroup.add(rightShoulder);
+
+      // Arc Reactor Core on Chest
+      const coreGeo = new THREE.CylinderGeometry(0.35, 0.35, 0.1, 24);
+      coreGeo.rotateX(Math.PI / 2);
+      const arcReactor = new THREE.Mesh(coreGeo, arcReactorMat);
+      arcReactor.position.set(0, 0.2, 1.15);
+      torsoGroup.add(arcReactor);
+
+      const coreRingGeo = new THREE.TorusGeometry(0.42, 0.05, 12, 32);
+      const coreRing = new THREE.Mesh(coreRingGeo, darkCarbonMat);
+      coreRing.position.set(0, 0.2, 1.15);
+      torsoGroup.add(coreRing);
+
+      // ==========================================
+      // B. NECK WITH HYDRAULIC ACTUATORS
+      // ==========================================
+      const neckGroup = new THREE.Group();
+      neckGroup.position.set(0, -1.2, 0);
+      androidGroup.add(neckGroup);
+
+      // Center cervical spine cylinder
+      const spineGeo = new THREE.CylinderGeometry(0.4, 0.45, 0.9, 16);
+      const spine = new THREE.Mesh(spineGeo, darkCarbonMat);
+      neckGroup.add(spine);
+
+      // Hydraulic side pistons
+      const pistonGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.8, 8);
+      const p1 = new THREE.Mesh(pistonGeo, chromeMat);
+      p1.position.set(-0.48, 0, 0.15);
+      neckGroup.add(p1);
+      neckPistons.push(p1);
+
+      const p2 = new THREE.Mesh(pistonGeo, chromeMat);
+      p2.position.set(0.48, 0, 0.15);
+      neckGroup.add(p2);
+      neckPistons.push(p2);
+
+      // ==========================================
+      // C. HEAD & CRANIUM (Humanoid Contoured Android)
+      // ==========================================
+      headGroup = new THREE.Group();
+      headGroup.position.set(0, 0.2, 0);
+      androidGroup.add(headGroup);
+
+      // 1. Skull Dome (Smooth curved metallic cranium)
+      const skullGeo = new THREE.SphereGeometry(1.3, 32, 24, 0, Math.PI * 2, 0, Math.PI * 0.65);
+      const skull = new THREE.Mesh(skullGeo, whiteChassisMat);
+      skull.position.set(0, 0.2, 0);
+      headGroup.add(skull);
+
+      // Back of head plate (dark carbon casing)
+      const backSkullGeo = new THREE.SphereGeometry(1.32, 24, 16, Math.PI * 0.5, Math.PI, 0, Math.PI * 0.7);
+      const backSkull = new THREE.Mesh(backSkullGeo, darkCarbonMat);
+      backSkull.position.set(0, 0.15, -0.05);
+      headGroup.add(backSkull);
+
+      // 2. Forehead & Brow Crest
+      const browGeo = new THREE.BoxGeometry(1.6, 0.28, 0.4);
+      const brow = new THREE.Mesh(browGeo, chromeMat);
+      brow.position.set(0, 0.45, 1.05);
+      headGroup.add(brow);
+
+      // Center Neural Gem / Sensor
+      const gemGeo = new THREE.ConeGeometry(0.14, 0.2, 4);
+      gemGeo.rotateX(Math.PI / 2);
+      const gem = new THREE.Mesh(gemGeo, eyeLensMat);
+      gem.position.set(0, 0.75, 1.15);
+      headGroup.add(gem);
+
+      // 3. Cheeks & Mid-Face Mask
+      const cheekGeo = new THREE.BoxGeometry(0.45, 0.7, 0.5);
+      const leftCheek = new THREE.Mesh(cheekGeo, whiteChassisMat);
+      leftCheek.position.set(-0.7, -0.05, 0.85);
+      leftCheek.rotation.y = 0.25;
+      headGroup.add(leftCheek);
+
+      const rightCheek = new THREE.Mesh(cheekGeo, whiteChassisMat);
+      rightCheek.position.set(0.7, -0.05, 0.85);
+      rightCheek.rotation.y = -0.25;
+      headGroup.add(rightCheek);
+
+      // 4. Optical Eye Cameras (Realistic Dual Android Lenses)
+      const eyeHousingGeo = new THREE.CylinderGeometry(0.3, 0.34, 0.2, 24);
+      eyeHousingGeo.rotateX(Math.PI / 2);
+
+      const leftEyeHousing = new THREE.Mesh(eyeHousingGeo, darkCarbonMat);
+      leftEyeHousing.position.set(-0.45, 0.2, 1.08);
+      headGroup.add(leftEyeHousing);
+
+      const rightEyeHousing = new THREE.Mesh(eyeHousingGeo, darkCarbonMat);
+      rightEyeHousing.position.set(0.45, 0.2, 1.08);
+      headGroup.add(rightEyeHousing);
+
+      // Glowing Lenses (Irises)
+      const lensGeo = new THREE.SphereGeometry(0.22, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.5);
+      lensGeo.rotateX(Math.PI / 2);
+
+      const leftLens = new THREE.Mesh(lensGeo, eyeLensMat);
+      leftLens.position.set(-0.45, 0.2, 1.2);
+      headGroup.add(leftLens);
+
+      const rightLens = new THREE.Mesh(lensGeo, eyeLensMat);
+      rightLens.position.set(0.45, 0.2, 1.2);
+      headGroup.add(rightLens);
+
+      // Pupil centers
+      const pupilGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.05, 16);
+      pupilGeo.rotateX(Math.PI / 2);
+      const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
+      leftPupil.position.set(-0.45, 0.2, 1.26);
+      headGroup.add(leftPupil);
+
+      const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
+      rightPupil.position.set(0.45, 0.2, 1.26);
+      headGroup.add(rightPupil);
 
       // Laser Beams (For Pump Mode)
       laserMat = new THREE.MeshBasicMaterial({
@@ -741,80 +881,79 @@
         opacity: 0,
         blending: THREE.AdditiveBlending,
       });
-      const laserGeo = new THREE.CylinderGeometry(0.05, 0.4, 9, 16);
+      const laserGeo = new THREE.CylinderGeometry(0.04, 0.35, 9, 16);
       laserGeo.rotateX(Math.PI / 2);
 
       leftLaser = new THREE.Mesh(laserGeo, laserMat);
-      leftLaser.position.set(-0.45, 0.25, 5.5);
-      robotGroup.add(leftLaser);
+      leftLaser.position.set(-0.45, 0.2, 5.6);
+      headGroup.add(leftLaser);
 
       rightLaser = new THREE.Mesh(laserGeo, laserMat);
-      rightLaser.position.set(0.45, 0.25, 5.5);
-      robotGroup.add(rightLaser);
+      rightLaser.position.set(0.45, 0.2, 5.6);
+      headGroup.add(rightLaser);
 
-      // 4. Equalizer Mouth
-      const mouthGroup = new THREE.Group();
-      mouthGroup.position.set(0, -0.45, 1.0);
-      robotGroup.add(mouthGroup);
-      barMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-      const barCount = 7;
-      for (let i = 0; i < barCount; i++) {
-        const bGeo = new THREE.BoxGeometry(0.1, 0.3, 0.05);
-        const bar = new THREE.Mesh(bGeo, barMat);
-        bar.position.x = (i - (barCount - 1) / 2) * 0.16;
-        mouthBars.push(bar);
-        mouthGroup.add(bar);
-      }
+      // 5. ARTICULATED MECHANICAL JAW (Opens when speaking!)
+      jawGroup = new THREE.Group();
+      jawGroup.position.set(0, -0.3, 0.4);
+      headGroup.add(jawGroup);
 
-      // 5. Side Ears & Antennae
-      const earGeo = new THREE.CylinderGeometry(0.3, 0.35, 0.4, 16);
-      earGeo.rotateZ(Math.PI / 2);
-      const earMat = new THREE.MeshStandardMaterial({
-        color: 0x0f182c,
-        metalness: 0.8,
-        roughness: 0.2,
-      });
-      const leftEar = new THREE.Mesh(earGeo, earMat);
-      leftEar.position.set(-1.1, 0.1, 0);
-      robotGroup.add(leftEar);
+      // Chin / Mandible
+      const chinGeo = new THREE.BoxGeometry(0.75, 0.55, 0.65);
+      const chin = new THREE.Mesh(chinGeo, chromeMat);
+      chin.position.set(0, -0.4, 0.55);
+      jawGroup.add(chin);
 
-      const rightEar = new THREE.Mesh(earGeo, earMat);
-      rightEar.position.set(1.1, 0.1, 0);
-      robotGroup.add(rightEar);
+      // Inner mouth glowing speaker mesh
+      const mouthMeshGeo = new THREE.BoxGeometry(0.5, 0.15, 0.1);
+      const mouthMesh = new THREE.Mesh(mouthMeshGeo, eyeLensMat);
+      mouthMesh.position.set(0, -0.15, 0.85);
+      jawGroup.add(mouthMesh);
 
-      const antGeo = new THREE.CylinderGeometry(0.02, 0.03, 1.1, 8);
-      const antMat = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-      const leftAnt = new THREE.Mesh(antGeo, antMat);
-      leftAnt.position.set(-1.15, 0.7, 0);
-      leftAnt.rotation.z = 0.25;
-      robotGroup.add(leftAnt);
+      // 6. Side Audio Sensors (Robotic Ear Turbines)
+      const earDiscGeo = new THREE.CylinderGeometry(0.4, 0.45, 0.3, 24);
+      earDiscGeo.rotateZ(Math.PI / 2);
 
-      const rightAnt = new THREE.Mesh(antGeo, antMat);
-      rightAnt.position.set(1.15, 0.7, 0);
-      rightAnt.rotation.z = -0.25;
-      robotGroup.add(rightAnt);
+      const leftEar = new THREE.Mesh(earDiscGeo, darkCarbonMat);
+      leftEar.position.set(-1.35, 0.1, 0);
+      headGroup.add(leftEar);
 
-      // 6. Holographic Rings
+      const rightEar = new THREE.Mesh(earDiscGeo, darkCarbonMat);
+      rightEar.position.set(1.35, 0.1, 0);
+      headGroup.add(rightEar);
+
+      // Ear Antenna Spikes
+      const antGeo = new THREE.CylinderGeometry(0.02, 0.04, 1.2, 8);
+      const leftAnt = new THREE.Mesh(antGeo, eyeLensMat);
+      leftAnt.position.set(-1.42, 0.7, 0);
+      leftAnt.rotation.z = 0.22;
+      headGroup.add(leftAnt);
+
+      const rightAnt = new THREE.Mesh(antGeo, eyeLensMat);
+      rightAnt.position.set(1.42, 0.7, 0);
+      rightAnt.rotation.z = -0.22;
+      headGroup.add(rightAnt);
+
+      // 7. Holographic Orbit Rings
       const ringMat1 = new THREE.MeshBasicMaterial({
         color: 0x00f0ff,
         wireframe: true,
         transparent: true,
         opacity: 0.35,
       });
-      orbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.015, 12, 64), ringMat1);
+      orbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(2.4, 0.015, 12, 64), ringMat1);
       scene.add(orbitRing1);
 
       const ringMat2 = new THREE.MeshBasicMaterial({
         color: 0xb026ff,
         wireframe: true,
         transparent: true,
-        opacity: 0.3,
+        opacity: 0.28,
       });
-      orbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(2.65, 0.015, 12, 64), ringMat2);
+      orbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(2.7, 0.015, 12, 64), ringMat2);
       orbitRing2.rotation.x = Math.PI / 3;
       scene.add(orbitRing2);
 
-      // 7. Ambient Cyber Dust Particles
+      // 8. Cyber Floating Particles
       const pCount = 200;
       const pGeo = new THREE.BufferGeometry();
       const pPos = new Float32Array(pCount * 3);
@@ -830,13 +969,13 @@
           size: 0.05,
           color: 0x00f0ff,
           transparent: true,
-          opacity: 0.6,
+          opacity: 0.55,
           blending: THREE.AdditiveBlending,
         })
       );
       scene.add(particles);
 
-      // Mouse Tracking
+      // --- MOUSE TRACKING ---
       window.addEventListener('mousemove', (e) => {
         const rect = container.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
@@ -853,80 +992,65 @@
         renderer.setSize(container.clientWidth, container.clientHeight);
       });
 
-      // Animation Loop
+      // --- ANIMATION LOOP ---
       let clock = new THREE.Clock();
-      let lastTime = performance.now();
-      let frames = 0;
 
       function renderLoop() {
         requestAnimationFrame(renderLoop);
         const elapsed = clock.getElapsedTime();
 
-        // FPS calculation
-        frames++;
-        const now = performance.now();
-        if (now - lastTime >= 1000) {
-          const fpsEl = document.getElementById('fpsCounter');
-          if (fpsEl) fpsEl.textContent = frames;
-          frames = 0;
-          lastTime = now;
-        }
-
         // Mouse look smooth interpolation
         mouse.x += (mouse.targetX - mouse.x) * 0.08;
         mouse.y += (mouse.targetY - mouse.y) * 0.08;
-        robotGroup.rotation.y = mouse.x;
-        robotGroup.rotation.x = -mouse.y;
 
-        // Subtle hover float
-        robotGroup.position.y = Math.sin(elapsed * 2.2) * 0.08;
+        // Realistic head rotation with neck coordination
+        headGroup.rotation.y = mouse.x * 0.75;
+        headGroup.rotation.x = -mouse.y * 0.6;
+        androidGroup.rotation.y = mouse.x * 0.25;
 
-        // Rings rotation
-        orbitRing1.rotation.z = elapsed * 0.35;
-        orbitRing1.rotation.x = Math.sin(elapsed * 0.2) * 0.4;
-        orbitRing2.rotation.y = -elapsed * 0.45;
-        particles.rotation.y = elapsed * 0.05;
+        // Subtle breathing & spinal float
+        androidGroup.position.y = Math.sin(elapsed * 2.0) * 0.06;
+
+        // Orbit rings
+        orbitRing1.rotation.z = elapsed * 0.32;
+        orbitRing1.rotation.x = Math.sin(elapsed * 0.2) * 0.35;
+        orbitRing2.rotation.y = -elapsed * 0.4;
+        particles.rotation.y = elapsed * 0.04;
 
         // States logic
         if (robotState === 'pump') {
-          eyeMat.color.setHex(0x00ff66);
-          barMat.color.setHex(0x00ff66);
-          headLight.color.setHex(0x00ff66);
+          eyeLensMat.color.setHex(0x00ff66);
+          arcReactorMat.color.setHex(0x00ff66);
           laserMat.color.setHex(0x00ff66);
           laserMat.opacity = 0.85 + Math.sin(elapsed * 30) * 0.15;
-          robotGroup.position.x = (Math.random() - 0.5) * 0.03; // energetic vibration
+          headGroup.position.x = (Math.random() - 0.5) * 0.03;
         } else if (robotState === 'dump') {
           const flash = Math.sin(elapsed * 14) > 0;
-          const c = flash ? 0xff0055 : 0x440011;
-          eyeMat.color.setHex(c);
-          barMat.color.setHex(c);
-          headLight.color.setHex(c);
+          const c = flash ? 0xff0055 : 0x330011;
+          eyeLensMat.color.setHex(c);
+          arcReactorMat.color.setHex(c);
           laserMat.opacity = 0;
-          robotGroup.position.x = 0;
+          headGroup.position.x = 0;
         } else if (robotState === 'speaking') {
-          eyeMat.color.setHex(0xb026ff);
-          barMat.color.setHex(0x00f0ff);
-          headLight.color.setHex(0xb026ff);
+          eyeLensMat.color.setHex(0xb026ff);
+          arcReactorMat.color.setHex(0x00f0ff);
           laserMat.opacity = 0;
-          robotGroup.position.x = 0;
+          headGroup.position.x = 0;
         } else {
-          eyeMat.color.setHex(0x00f0ff);
-          barMat.color.setHex(0x00f0ff);
-          headLight.color.setHex(0x00f0ff);
+          eyeLensMat.color.setHex(0x00f0ff);
+          arcReactorMat.color.setHex(0x00f0ff);
           laserMat.opacity = 0;
-          robotGroup.position.x = 0;
+          headGroup.position.x = 0;
         }
 
-        // Mouth animation
-        if (isSpeaking || robotState === 'speaking' || robotState === 'pump') {
-          mouthBars.forEach((b, idx) => {
-            const wave = Math.sin(elapsed * 20 + idx * 1.3);
-            b.scale.y = Math.max(0.2, Math.abs(wave) * 2.5);
-          });
+        // Jaw articulation when speaking
+        if (isSpeaking || robotState === 'speaking') {
+          const speechWave = Math.abs(Math.sin(elapsed * 18));
+          jawGroup.rotation.x = speechWave * 0.32; // Drops jaw down realistically!
+          jawGroup.position.y = -0.3 - speechWave * 0.08;
         } else {
-          mouthBars.forEach((b, idx) => {
-            b.scale.y = 0.35 + Math.sin(elapsed * 3 + idx) * 0.2;
-          });
+          jawGroup.rotation.x = 0;
+          jawGroup.position.y = -0.3;
         }
 
         renderer.render(scene, camera);
@@ -947,18 +1071,18 @@
         const card = document.createElement('div');
         card.className = `cursor-pointer p-3 rounded-xl border transition-all duration-200 flex flex-col justify-between ${
           isSelected 
-            ? 'bg-cyan-950/40 border-cyan-400 shadow-md shadow-cyan-500/20 box-glow-cyan' 
-            : 'bg-black/40 border-gray-800 hover:border-cyan-500/40 hover:bg-black/60'
+            ? 'bg-cyan-950/50 border-cyan-400 shadow-md shadow-cyan-500/25 box-glow-cyan' 
+            : 'bg-black/50 border-gray-800 hover:border-cyan-500/40 hover:bg-black/70'
         }`;
         
         card.innerHTML = `
           <div class="flex items-center justify-between">
             <span class="text-xl">${token.emoji}</span>
-            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-black/50 text-gray-400 border border-gray-800">${token.chain}</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-black/60 text-gray-400 border border-gray-800">${token.chain}</span>
           </div>
           <div class="my-1.5">
             <div class="font-orbitron font-bold text-sm text-white">${token.symbol}</div>
-            <div class="font-mono text-xs font-bold text-gray-300" id="price-${token.id}">$${formatPrice(token.price)}</div>
+            <div class="font-mono text-xs font-bold text-gray-200" id="price-${token.id}">$${formatPrice(token.price)}</div>
           </div>
           <div class="flex items-center justify-between text-[11px] font-mono">
             <span class="font-bold ${isPositive ? 'text-emerald-400' : 'text-red-400'}" id="change-${token.id}">
@@ -978,9 +1102,11 @@
     }
 
     function formatPrice(p) {
-      if (p >= 1) return p.toFixed(2);
+      if (typeof p !== 'number' || isNaN(p)) return '0.00';
+      if (p >= 1) return p.toFixed(4);
       if (p >= 0.01) return p.toFixed(4);
-      return p.toFixed(7);
+      if (p >= 0.0001) return p.toFixed(6);
+      return p.toFixed(8);
     }
 
     function selectToken(token) {
@@ -1004,13 +1130,14 @@
       document.getElementById('metricVolume').textContent = token.volume24h;
       document.getElementById('metricMcap').textContent = token.marketCap;
       document.getElementById('metricWhale').textContent = token.whaleAlert;
+      document.getElementById('selectedHighLow').textContent = `H: $${formatPrice(token.high24h)} | L: $${formatPrice(token.low24h)}`;
 
       document.getElementById('targetCoinSymbol').textContent = token.symbol;
       document.getElementById('btnScanTarget').textContent = token.symbol;
 
       const promptText = currentLang === 'el-GR'
-        ? `«Έτοιμο για ανάλυση στο ${token.symbol}. Πατήστε EXECUTE NEURAL SCAN για φωνητικό broadcast.»`
-        : `«Target locked: ${token.symbol}. Click EXECUTE NEURAL SCAN for live voice broadcast.»`;
+        ? `«Στόχος κλειδώθηκε στο ${token.symbol}. Τρέχουσα τιμή: $${formatPrice(token.price)}. Πατήστε EXECUTE NEURAL SCAN για ανάλυση.»`
+        : `«Target locked: ${token.symbol}. Real price: $${formatPrice(token.price)}. Click EXECUTE NEURAL SCAN for live briefing.»`;
       document.getElementById('speechTranscriptText').textContent = promptText;
 
       resetChart();
@@ -1031,11 +1158,11 @@
       document.getElementById('voiceStatusBadge').className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-500/50 animate-pulse';
 
       // Confetti burst if positive
-      if (selectedCoin.change24h >= 5 && window.confetti) {
+      if (selectedCoin.change24h >= 2 && window.confetti) {
         window.confetti({
-          particleCount: 80,
-          spread: 60,
-          origin: { y: 0.6 }
+          particleCount: 90,
+          spread: 70,
+          origin: { y: 0.55 }
         });
       }
 
@@ -1044,16 +1171,13 @@
 
       sound.speak(
         speechText,
+        () => {},
         () => {
-          // On speech start
-        },
-        () => {
-          // On speech end
           isSpeaking = false;
           robotState = 'idle';
-          document.getElementById('robotModeLabel').textContent = '⚡ MONITORING MEMES';
+          document.getElementById('robotModeLabel').textContent = '⚡ SCANNING LIVE TICKERS';
           document.getElementById('robotModeLabel').className = 'font-bold text-cyan-400 tracking-wider';
-          document.getElementById('voiceStatusBadge').textContent = 'IDLE / READY';
+          document.getElementById('voiceStatusBadge').textContent = 'SYNTHESIZER READY';
           document.getElementById('voiceStatusBadge').className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-400 border border-gray-700';
         }
       );
@@ -1066,29 +1190,29 @@
       sound.playLaser();
 
       robotState = 'pump';
-      document.getElementById('robotFrame').className = 'relative w-full h-[380px] sm:h-[440px] md:h-[490px] rounded-2xl bg-gradient-to-b from-[#062414]/90 via-[#041a0e]/90 to-[#020d07]/95 border-2 border-emerald-400 overflow-hidden box-glow-green transition-all duration-300';
+      document.getElementById('robotFrame').className = 'relative w-full h-[400px] sm:h-[460px] md:h-[500px] rounded-2xl bg-gradient-to-b from-[#062414]/95 via-[#041a0e]/95 to-[#020d07]/98 border-2 border-emerald-400 overflow-hidden box-glow-green transition-all duration-300';
       document.getElementById('robotModeLabel').textContent = '🚀 MEGA PUMP ENGAGED!';
       document.getElementById('robotModeLabel').className = 'font-bold text-emerald-400 tracking-wider glow-green animate-bounce';
 
       if (window.confetti) {
         window.confetti({
-          particleCount: 120,
+          particleCount: 140,
           spread: 80,
           origin: { y: 0.5 }
         });
       }
 
       const pumpSpeech = currentLang === 'el-GR' 
-        ? `Πράσινο τσουνάμι στην αγορά! Το ${selectedCoin.symbol} εκτοξεύεται στο διάστημα! Laser eyes στο μέγιστο!`
-        : `Green tsunami detected! ${selectedCoin.symbol} is blasting to outer space! Maximum laser eyes!`;
+        ? `Πράσινο τσουνάμι! Το ${selectedCoin.symbol} εκτοξεύεται με πραγματική τιμή $${formatPrice(selectedCoin.price)}! Laser eyes στο μέγιστο!`
+        : `Green tsunami! ${selectedCoin.symbol} is blasting at real price $${formatPrice(selectedCoin.price)}! Maximum laser eyes!`;
       document.getElementById('speechTranscriptText').textContent = pumpSpeech;
       sound.speak(pumpSpeech);
 
       setTimeout(() => {
         if (robotState === 'pump') {
           robotState = 'idle';
-          document.getElementById('robotFrame').className = 'relative w-full h-[380px] sm:h-[440px] md:h-[490px] rounded-2xl bg-gradient-to-b from-[#0b1028]/90 via-[#070b1e]/90 to-[#040612]/95 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500';
-          document.getElementById('robotModeLabel').textContent = '⚡ MONITORING MEMES';
+          document.getElementById('robotFrame').className = 'relative w-full h-[400px] sm:h-[460px] md:h-[500px] rounded-2xl bg-gradient-to-b from-[#0a0f26]/95 via-[#060a1d]/95 to-[#030510]/98 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500';
+          document.getElementById('robotModeLabel').textContent = '⚡ SCANNING LIVE TICKERS';
           document.getElementById('robotModeLabel').className = 'font-bold text-cyan-400 tracking-wider';
         }
       }, 7000);
@@ -1099,71 +1223,94 @@
       sound.playAlarm();
 
       robotState = 'dump';
-      document.getElementById('robotFrame').className = 'relative w-full h-[380px] sm:h-[440px] md:h-[490px] rounded-2xl bg-gradient-to-b from-[#240612]/90 via-[#1a040b]/90 to-[#0d0205]/95 border-2 border-red-500 overflow-hidden box-glow-red transition-all duration-300';
+      document.getElementById('robotFrame').className = 'relative w-full h-[400px] sm:h-[460px] md:h-[500px] rounded-2xl bg-gradient-to-b from-[#240612]/95 via-[#1a040b]/95 to-[#0d0205]/98 border-2 border-red-500 overflow-hidden box-glow-red transition-all duration-300';
       document.getElementById('robotModeLabel').textContent = '🚨 RUG / DUMP ALERT!';
       document.getElementById('robotModeLabel').className = 'font-bold text-red-500 tracking-wider glow-red animate-pulse';
 
       const dumpSpeech = currentLang === 'el-GR'
-        ? `Κόκκινος συναγερμός! Μαζικές ρευστοποιήσεις και απότομη πτώση στο ${selectedCoin.symbol}! Προστατεύστε το κεφάλαιό σας!`
-        : `Red alert! Massive liquidations and dump detected on ${selectedCoin.symbol}! Protect your bags!`;
+        ? `Κόκκινος συναγερμός! Μαζικές ρευστοποιήσεις στο ${selectedCoin.symbol}! Προσοχή στην αγορά!`
+        : `Red alert! Heavy liquidations detected on ${selectedCoin.symbol}! Protect your positions!`;
       document.getElementById('speechTranscriptText').textContent = dumpSpeech;
       sound.speak(dumpSpeech);
 
       setTimeout(() => {
         if (robotState === 'dump') {
           robotState = 'idle';
-          document.getElementById('robotFrame').className = 'relative w-full h-[380px] sm:h-[440px] md:h-[490px] rounded-2xl bg-gradient-to-b from-[#0b1028]/90 via-[#070b1e]/90 to-[#040612]/95 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500';
-          document.getElementById('robotModeLabel').textContent = '⚡ MONITORING MEMES';
+          document.getElementById('robotFrame').className = 'relative w-full h-[400px] sm:h-[460px] md:h-[500px] rounded-2xl bg-gradient-to-b from-[#0a0f26]/95 via-[#060a1d]/95 to-[#030510]/98 border border-cyan-500/30 overflow-hidden box-glow-cyan transition-all duration-500';
+          document.getElementById('robotModeLabel').textContent = '⚡ SCANNING LIVE TICKERS';
           document.getElementById('robotModeLabel').className = 'font-bold text-cyan-400 tracking-wider';
         }
       }, 7000);
     }
 
-    // --- 6. REAL-TIME BINANCE WEBSOCKET & PRICE SIMULATOR ---
-    function connectBinanceStream() {
-      // Connect to combined stream for Binance pairs
+    // --- 6. 100% REAL LIVE MARKET DATA ENGINE (REST + WEBSOCKET) ---
+    async function fetchRealBinancePrices() {
+      try {
+        const binanceSymbols = MEME_TOKENS.filter(t => t.binanceSymbol).map(t => `"${t.binanceSymbol}"`).join(',');
+        const url = `https://api.binance.com/api/v3/ticker/24hr?symbols=[${encodeURIComponent(binanceSymbols)}]`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Binance HTTP error');
+        const data = await res.json();
+
+        data.forEach(item => {
+          const token = MEME_TOKENS.find(t => t.binanceSymbol === item.symbol);
+          if (token) {
+            token.price = parseFloat(item.lastPrice);
+            token.change24h = parseFloat(item.priceChangePercent);
+            token.high24h = parseFloat(item.highPrice);
+            token.low24h = parseFloat(item.lowPrice);
+            const quoteVol = parseFloat(item.quoteVolume);
+            token.volume24h = quoteVol > 1e6 ? `$${(quoteVol / 1e6).toFixed(1)}M` : `$${(quoteVol / 1e3).toFixed(1)}K`;
+            updateTokenPriceUI(token);
+          }
+        });
+        document.getElementById('feedStatus').textContent = 'BINANCE REAL 24H SYNCED';
+      } catch (err) {
+        console.warn('REST Binance fetch failed, will use WebSocket', err);
+      }
+    }
+
+    function connectRealBinanceWebSocket() {
       const streams = MEME_TOKENS
         .filter(t => t.binanceSymbol)
         .map(t => `${t.binanceSymbol.toLowerCase()}@ticker`)
         .join('/');
 
+      // Proper Binance combined multi-stream URL format: /stream?streams=...
+      const wsUrl = `wss://stream.binance.com:9443/stream?streams=${streams}`;
+
       try {
-        const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${streams}`);
-        
+        const ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => {
+          document.getElementById('feedStatus').textContent = 'BINANCE LIVE WEBSOCKET';
+        };
+
         ws.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          const symbol = data.s;
-          const token = MEME_TOKENS.find(t => t.binanceSymbol === symbol);
+          const msg = JSON.parse(event.data);
+          const data = msg.data;
+          if (!data || !data.s) return;
+
+          const token = MEME_TOKENS.find(t => t.binanceSymbol === data.s);
           if (token) {
             token.price = parseFloat(data.c);
             token.change24h = parseFloat(data.P);
+            token.high24h = parseFloat(data.h);
+            token.low24h = parseFloat(data.l);
             updateTokenPriceUI(token);
           }
         };
 
         ws.onerror = () => {
-          // Fallback to active simulation ticks if offline
-          startPriceSimulator();
+          console.warn('Binance WebSocket error, retrying...');
+        };
+
+        ws.onclose = () => {
+          setTimeout(connectRealBinanceWebSocket, 5000);
         };
       } catch (e) {
-        startPriceSimulator();
+        console.error('WebSocket connection error', e);
       }
-
-      // Also tick non-binance tokens (like Brett)
-      startPriceSimulator();
-    }
-
-    function startPriceSimulator() {
-      setInterval(() => {
-        MEME_TOKENS.forEach(token => {
-          if (!token.binanceSymbol || Math.random() > 0.6) {
-            const jitter = (Math.random() - 0.495) * 0.006;
-            token.price = Math.max(0.0000001, token.price * (1 + jitter));
-            token.change24h += jitter * 10;
-            updateTokenPriceUI(token);
-          }
-        });
-      }, 2500);
     }
 
     function updateTokenPriceUI(token) {
@@ -1179,21 +1326,32 @@
       if (selectedCoin.id === token.id) {
         const selPriceEl = document.getElementById('selectedCoinPrice');
         if (selPriceEl) selPriceEl.textContent = '$' + formatPrice(token.price);
+
+        const selChangeEl = document.getElementById('selectedCoinChange');
+        if (selChangeEl) {
+          const isPos = token.change24h >= 0;
+          selChangeEl.className = `font-mono text-xs font-bold flex items-center justify-end space-x-1 ${isPos ? 'text-emerald-400' : 'text-red-400'}`;
+          selChangeEl.innerHTML = `<span>${isPos ? '▲ +' : '▼ '}${token.change24h.toFixed(2)}% (24h)</span>`;
+        }
+
+        const hlEl = document.getElementById('selectedHighLow');
+        if (hlEl) hlEl.textContent = `H: $${formatPrice(token.high24h)} | L: $${formatPrice(token.low24h)}`;
+
+        const volEl = document.getElementById('metricVolume');
+        if (volEl) volEl.textContent = token.volume24h;
+
         addChartPoint(token.price);
       }
     }
 
     // --- 7. DYNAMIC LIVE CHART (CANVAS) ---
     const chartPoints = [];
-    for (let i = 0; i < 40; i++) {
-      chartPoints.push(100 + Math.sin(i * 0.4) * 8 + (Math.random() - 0.5) * 4);
-    }
 
     function resetChart() {
       chartPoints.length = 0;
-      let base = 100;
+      let base = selectedCoin.price || 1.0;
       for (let i = 0; i < 40; i++) {
-        base += (Math.random() - 0.48) * 3;
+        base += (Math.random() - 0.49) * (base * 0.003);
         chartPoints.push(base);
       }
       drawChart();
@@ -1216,8 +1374,8 @@
 
       if (chartPoints.length < 2) return;
 
-      const min = Math.min(...chartPoints) * 0.998;
-      const max = Math.max(...chartPoints) * 1.002;
+      const min = Math.min(...chartPoints) * 0.999;
+      const max = Math.max(...chartPoints) * 1.001;
       const range = max - min || 1;
 
       // Gradient Fill
@@ -1239,7 +1397,7 @@
         else ctx.lineTo(x, y);
       });
 
-      // Close path for fill
+      // Fill
       ctx.lineTo(w, h);
       ctx.lineTo(0, h);
       ctx.closePath();
@@ -1258,7 +1416,7 @@
       ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      // Glowing dot at latest point
+      // Glowing head point
       const lastX = w;
       const lastY = h - ((chartPoints[chartPoints.length - 1] - min) / range) * (h - 15) - 5;
       ctx.beginPath();
@@ -1271,12 +1429,19 @@
     }
 
     // --- 8. UI CONTROLS & EVENT LISTENERS ---
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
       initThreeRobot();
       renderTokens();
       selectToken(MEME_TOKENS[0]);
-      connectBinanceStream();
-      drawChart();
+
+      // 1. Fetch real initial prices immediately from Binance REST
+      await fetchRealBinancePrices();
+
+      // 2. Connect Binance real-time WebSocket for tick-by-tick streaming
+      connectRealBinanceWebSocket();
+
+      // Reset & draw chart with real price baseline
+      resetChart();
 
       // Clock
       setInterval(() => {
@@ -1320,7 +1485,7 @@
         const robotFrame = document.getElementById('robotFrame');
         if (tiktokModeActive) {
           tiktokBtn.className = 'px-3 py-1.5 rounded font-mono text-xs border border-purple-400 bg-purple-950/60 text-purple-300 shadow-lg shadow-purple-500/30';
-          robotFrame.style.height = '580px';
+          robotFrame.style.height = '600px';
         } else {
           tiktokBtn.className = 'px-3 py-1.5 rounded font-mono text-xs border border-gray-700 bg-gray-900/60 text-gray-300 hover:text-white';
           robotFrame.style.height = '';
